@@ -4,7 +4,7 @@ export {};
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomOptions {
-    fetchData?: (to: RouteLocationNormalized) => Promise<void>;
+    fetchData?: (to: RouteLocationNormalized) => unknown;
     shouldReFetch?: boolean;
   }
 }

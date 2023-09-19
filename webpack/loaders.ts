@@ -53,6 +53,7 @@ export const createImageLoader = (isSSR = false): RuleSetRule => ({
           loader: 'file-loader',
           options: {
             emitFile: !isSSR,
+            esModule: false,
           },
         },
         limit: 24_000,

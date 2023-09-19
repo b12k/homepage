@@ -1,6 +1,6 @@
 import 'webpack-dev-server';
 import { resolve } from 'node:path';
-import { Configuration } from 'webpack';
+import type { Configuration } from 'webpack';
 import baseConfig from './config.base';
 import { sassLoader, createImageLoader } from './loaders';
 import { getVendorName, getFilenameJs } from './utils';
@@ -49,7 +49,7 @@ const config: Configuration = {
   },
   devServer: {
     devMiddleware: {
-      writeToDisk: (file) => !file.includes('hot-update'),
+      writeToDisk: true,
     },
     client: {
       overlay: {

@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     "jsx": "preserve",
-    "module": "NodeNext",
+    "module": "CommonJS",
     "strict": true,
-    "target": "esnext",
+    "target": "ESNext",
     "skipLibCheck": true,
     "importHelpers": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    // "moduleResolution": "bundler",
     "isolatedModules": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,

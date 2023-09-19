@@ -2,7 +2,7 @@
   import { useHead } from '@unhead/vue';
   import { useRoute } from 'vue-router';
   import { computed } from 'vue';
-  import { BaseLayout, BaseCookieConsent } from './components';
+  import { BaseLayout, BaseCookieConsent } from '../components';
 
   useHead({
     title: 'Bogdan Kolesnyk - web solution architecture and development',

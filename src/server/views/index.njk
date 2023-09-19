@@ -36,6 +36,14 @@
       }
     });
   </script>
+  <noscript>
+    {% for style in manifest.css.initial %}
+      <link rel="stylesheet" href="{{ style }}">
+    {% endfor %}
+    {% for style in manifest.css.async %}
+      <link rel="stylesheet" href="{{ style }}">
+    {% endfor %}
+  </noscript>
 </head>
 <body{{ head.bodyAttrs | safe }}>
   {{ head.bodyTagsOpen | safe }}

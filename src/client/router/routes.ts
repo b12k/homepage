@@ -1,24 +1,48 @@
 import { RouteRecordRaw } from 'vue-router';
+// import PageShell from '../pages/_page-shell.vue';
 
 type RouteRecordRawNamed = RouteRecordRaw & { name: string };
 export const routes: Array<RouteRecordRawNamed> = [
   {
-    name: 'One',
+    name: 'home',
     path: '/',
-    component: () => import('../pages/page-one.vue'),
+    component: () => import('../pages/page-home.vue'),
   },
   {
-    name: 'Two',
-    path: '/two',
-    component: () => import('../pages/page-two.vue'),
+    name: 'about',
+    path: '/about',
+    component: () => import('../pages/page-about.vue'),
   },
   {
-    name: 'Three',
-    path: '/three',
-    component: () => import('../pages/page-three.vue'),
+    name: 'projects',
+    path: '/projects',
+    component: () => import('../pages/page-projects.vue'),
   },
   {
-    name: 'NotFound',
+    name: 'speaking',
+    path: '/speaking',
+    component: () => import('../pages/page-speaking.vue'),
+  },
+  {
+    name: 'contact',
+    path: '/contact',
+    component: () => import('../pages/page-contact.vue'),
+  },
+  {
+    name: 'cookie-consent',
+    path: '/cookies',
+    component: () => import('../pages/page-cookies.vue'),
+  },
+  {
+    name: 'error',
+    path: '/error',
+    component: () => import('../pages/page-error.vue'),
+    meta: {
+      responseCode: 500,
+    },
+  },
+  {
+    name: 'not-found',
     path: '/404',
     component: () => import('../pages/page-not-found.vue'),
     meta: {
@@ -26,15 +50,10 @@ export const routes: Array<RouteRecordRawNamed> = [
     },
   },
   {
-    name: 'Error',
-    path: '/error',
-    component: () => import('../pages/error-page.vue'),
-  },
-  {
-    name: 'CatchNotFound',
+    name: 'catch-not-found',
     path: '/:notFoundPath(.*)*',
     redirect: (to) => ({
-      path: '/404',
+      name: 'not-found',
       query: {
         'not-found': encodeURIComponent(String(to.params.notFoundPath)),
       },

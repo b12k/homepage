@@ -1,3 +1,4 @@
+import '@popperjs/core';
 import 'bootstrap';
 import { createWebHistory } from 'vue-router';
 
@@ -16,6 +17,7 @@ declare global {
 (async () => {
   const initialState = deserialize<InitialState>(window.INITIAL_STATE);
   const history = createWebHistory(initialState.context.baseUrl);
+  // const history = createWebHistory('/');
   const { app, router } = await createApp(history, initialState);
 
   app.mount('#app');
