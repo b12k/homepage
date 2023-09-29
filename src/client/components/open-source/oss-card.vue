@@ -1,5 +1,5 @@
 <template>
-  <article class="card">
+  <article class="card shadow-sm">
     <img
       src="http://via.placeholder.com/640x360"
       class="card-img-top"

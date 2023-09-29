@@ -51,7 +51,8 @@
           "props": true,
           "param": true,
           "params": true,
-          "Env": true
+          "Env": true,
+          "Props": true,
         }
       }
     ]

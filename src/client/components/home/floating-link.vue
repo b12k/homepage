@@ -36,7 +36,7 @@
           name: 'about',
         }"
       >
-        🤘
+        <span class="shaka-brah">🤙🏻</span>
       </RouterLink>
     </div>
   </div>
@@ -61,6 +61,11 @@
       a {
         text-decoration: none;
         pointer-events: all;
+      }
+
+      .shaka-brah {
+        rotate: -60deg;
+        transform: translate(0, -0.15em);
       }
     }
   }

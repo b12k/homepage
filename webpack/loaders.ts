@@ -43,7 +43,7 @@ export const iconsLoader: RuleSetRule = {
 };
 
 export const createImageLoader = (isSSR = false): RuleSetRule => ({
-  test: /\.(png|gif|jpe?g|svg)$/,
+  test: /\.(png|gif|jpe?g|svg|webp)$/,
   exclude: env.ICONS_FOLDER_PATH,
   use: [
     {
@@ -60,6 +60,7 @@ export const createImageLoader = (isSSR = false): RuleSetRule => ({
         name: `${isSSR ? '/' : ''}public/images/[ext]/[name]${
           env.IS_PROD ? '.[contenthash:8]' : ''
         }.[ext]`,
+        esModule: false,
       },
     },
   ],

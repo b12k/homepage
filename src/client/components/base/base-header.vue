@@ -1,5 +1,31 @@
 <script lang="ts" setup>
   import BaseIcon from './base-icon.vue';
+  import BaseHeaderNav, {
+    type BaseHeaderNavProps,
+  } from './base-header-nav.vue';
+
+  const links: BaseHeaderNavProps['links'] = [
+    {
+      emoji: '👋',
+      label: 'About',
+      name: 'about',
+    },
+    {
+      emoji: '🐶',
+      label: 'Projects',
+      name: 'projects',
+    },
+    {
+      emoji: '📢',
+      label: 'Speaking',
+      name: 'speaking',
+    },
+    {
+      emoji: '📬',
+      label: 'Contact',
+      name: 'contact',
+    },
+  ];
 </script>
 
 <template>
@@ -17,28 +43,7 @@
             Bogdan Kolesnyk
           </span>
         </RouterLink>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <RouterLink class="nav-link" :to="{ name: 'about' }">
-              About
-            </RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink class="nav-link" :to="{ name: 'projects' }">
-              Projects
-            </RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink class="nav-link" :to="{ name: 'speaking' }">
-              Speaking
-            </RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink class="nav-link" :to="{ name: 'contact' }">
-              Contact
-            </RouterLink>
-          </li>
-        </ul>
+        <BaseHeaderNav :links="links" />
       </div>
     </nav>
   </header>

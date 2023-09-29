@@ -9,6 +9,7 @@
   const canShowImage = ref(false);
 
   let Cookies: CookiesStatic | undefined;
+  const consentCookieName = 'cookies_accepted';
 
   const handleImageAnimationEnd = () => {
     canShowChatBubble.value = canShowImage.value;
@@ -19,7 +20,9 @@
     canShowImage.value = canShowChatBubble.value;
   };
   const acceptCookieConsent = () => {
-    Cookies?.set('COOKIES_ACCEPTED', 'true');
+    Cookies?.set(consentCookieName, 'true', {
+      sameSite: 'lax',
+    });
     canShowChatBubble.value = false;
   };
 
@@ -30,8 +33,7 @@
   onMounted(async () => {
     const { default: JsCookies } = await import('js-cookie');
 
-    isCookieConsentAccepted.value =
-      JsCookies.get('COOKIES_ACCEPTED') === 'true';
+    isCookieConsentAccepted.value = JsCookies.get(consentCookieName) === 'true';
 
     if (isCookieConsentAccepted.value) return;
 
