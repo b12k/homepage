@@ -1,49 +1,46 @@
 <script lang="ts" setup>
   import { nextTick, onMounted, ref } from 'vue';
-  import type { CookiesStatic } from 'js-cookie';
+  import JsCookie from 'js-cookie';
   import BaseChatBubble from './base-chat-bubble.vue';
+  import { wait } from '../../utils';
 
   const isCookieConsentAccepted = ref(false);
   const canShowCookieConsent = ref(false);
   const canShowChatBubble = ref(false);
   const canShowImage = ref(false);
 
-  let Cookies: CookiesStatic | undefined;
   const consentCookieName = 'cookies_accepted';
+  const animationDuration = 500;
 
-  const handleImageAnimationEnd = () => {
-    canShowChatBubble.value = canShowImage.value;
-    canShowCookieConsent.value = canShowImage.value;
+  const showImageAndChatBubble = async () => {
+    canShowImage.value = true;
+    await wait(animationDuration);
+    canShowChatBubble.value = true;
   };
 
-  const handleChatBubbleAnimationEnd = () => {
-    canShowImage.value = canShowChatBubble.value;
+  const hideChatBubbleAndImage = async () => {
+    canShowChatBubble.value = false;
+    await wait(animationDuration);
+    canShowImage.value = false;
   };
+
   const acceptCookieConsent = () => {
-    Cookies?.set(consentCookieName, 'true', {
+    JsCookie.set(consentCookieName, 'true', {
       sameSite: 'lax',
     });
-    canShowChatBubble.value = false;
-  };
-
-  const closeCookieBanner = async () => {
-    canShowChatBubble.value = false;
+    hideChatBubbleAndImage();
   };
 
   onMounted(async () => {
-    const { default: JsCookies } = await import('js-cookie');
-
-    isCookieConsentAccepted.value = JsCookies.get(consentCookieName) === 'true';
+    isCookieConsentAccepted.value = JsCookie.get(consentCookieName) === 'true';
 
     if (isCookieConsentAccepted.value) return;
-
-    Cookies = JsCookies;
 
     canShowCookieConsent.value = true;
 
     await nextTick();
 
-    canShowImage.value = true;
+    await showImageAndChatBubble();
   });
 </script>
 <template>
@@ -55,11 +52,7 @@
       enter-active-class="animate__bounceIn"
       leave-active-class="animate__bounceOut"
     >
-      <BaseChatBubble
-        v-if="canShowChatBubble"
-        class="animate__animated"
-        @animationend="handleChatBubbleAnimationEnd"
-      >
+      <BaseChatBubble v-if="canShowChatBubble" class="animate__animated">
         <h4>🍪 Cookies!</h4>
         <p>
           This website uses them.
@@ -71,7 +64,7 @@
         <div class="d-flex gap-1 overflow-hidden">
           <button
             class="btn btn-sm btn-light flex-grow-1"
-            @click="closeCookieBanner"
+            @click="hideChatBubbleAndImage"
           >
             Close
           </button>
@@ -96,7 +89,6 @@
         height="180"
         src="../../assets/images/cookies_bear.png"
         alt="Cookies!"
-        @animationend="handleImageAnimationEnd"
       />
     </Transition>
   </div>

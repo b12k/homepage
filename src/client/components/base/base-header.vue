@@ -3,6 +3,7 @@
   import BaseHeaderNav, {
     type BaseHeaderNavProps,
   } from './base-header-nav.vue';
+  import BaseOffcanvas from './base-offcanvas.vue';
 
   const links: BaseHeaderNavProps['links'] = [
     {
@@ -36,15 +37,30 @@
           :to="{ name: 'home' }"
           class="navbar-brand d-flex align-items-center gap-2"
         >
-          <BaseIcon :icon="'DigitalBrain'" class="display-6" />
+          <BaseIcon icon="DigitalBrain" class="display-6" />
           <span
-            class="d-inline-flex flex-column justify-content-center h-100 fw-bold"
+            class="d-inline-flex flex-column justify-content-center h-100 fw-bold full-name"
           >
             Bogdan Kolesnyk
           </span>
         </RouterLink>
-        <BaseHeaderNav :links="links" />
+        <BaseHeaderNav :links="links" class="d-none d-lg-flex" />
+        <BaseOffcanvas class="d-lg-none">
+          <BaseHeaderNav :links="links" />
+        </BaseOffcanvas>
       </div>
     </nav>
   </header>
 </template>
+
+<style lang="scss">
+  @import '../../styles/bootstrap/bootstrap';
+
+  .base-header {
+    .full-name {
+      @include media-breakpoint-only('xs') {
+        font-size: 1rem;
+      }
+    }
+  }
+</style>

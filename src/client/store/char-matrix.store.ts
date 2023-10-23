@@ -54,8 +54,6 @@ export const useCharMatrixStore = defineStore('charMatrix', {
   actions: {
     reBuildRowsOfChars() {
       this.rowsOfChars = buildRowsOfChars(paddedTextLines);
-    },
-    reBuildPlaceholderRowsOfChars() {
       this.placeholderRowsOfChars = buildRowsOfChars(paddedPlaceholderLines);
     },
   },

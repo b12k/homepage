@@ -3,6 +3,7 @@
   import { useRoute } from 'vue-router';
   import { computed } from 'vue';
   import { BaseLayout, BaseCookieConsent } from './components';
+  import BaseOffcanvas from './components/base/base-offcanvas.vue';
 
   useHead({
     title: 'Bogdan Kolesnyk - web solution architecture and development',

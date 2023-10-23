@@ -74,7 +74,7 @@
 <style lang="scss">
   .chars-matrix {
     background-color: #da291c;
-    min-height: 100vh;
+    min-height: 100svh;
     font-size: 3vh;
     opacity: 1;
 

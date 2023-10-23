@@ -13,7 +13,7 @@
   <ul class="base-header-nav navbar-nav gap-2">
     <li v-for="link in props.links" :key="link.name" class="nav-item">
       <RouterLink
-        class="nav-link text-black px-0 pe-1"
+        class="nav-link text-black px-0 d-block d-lg-inline-block text-center pe-2 pe-lg-1"
         :to="{ name: link.name }"
       >
         {{ link.emoji }} {{ link.label }}

@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { onMounted, ref } from 'vue';
+  import { BaseIcon } from '../base';
 
   const animationClass = ref<string>();
 
@@ -31,12 +32,12 @@
       @animationend="handleIconAnimationEnd"
     >
       <RouterLink
-        class="d-flex flex-column h-100 w-100 justify-content-center text-center h3"
+        class="d-flex flex-column h-100 w-100 justify-content-center text-center h1"
         :to="{
           name: 'about',
         }"
       >
-        <span class="shaka-brah">🤙🏻</span>
+        <BaseIcon icon="ShakaBrah" />
       </RouterLink>
     </div>
   </div>
@@ -61,11 +62,6 @@
       a {
         text-decoration: none;
         pointer-events: all;
-      }
-
-      .shaka-brah {
-        rotate: -60deg;
-        transform: translate(0, -0.15em);
       }
     }
   }
