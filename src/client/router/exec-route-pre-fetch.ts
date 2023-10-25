@@ -1,6 +1,6 @@
 import {
-  RouteLocationNormalized,
-  RouteLocationNormalizedLoaded,
+  type RouteLocationNormalized,
+  type RouteLocationNormalizedLoaded,
 } from 'vue-router';
 import { getMatchedComponents } from '@b12k/vue3-router-gmc';
 

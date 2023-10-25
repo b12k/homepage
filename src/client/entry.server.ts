@@ -2,10 +2,10 @@ import { renderSSRHead } from '@unhead/ssr';
 import { renderToString } from 'vue/server-renderer';
 import { createMemoryHistory } from 'vue-router';
 
-import { Context } from '@server';
+import type { Context } from '@server';
 
 import { createApp } from './create-app';
-import { replaceLogger, Logger } from './services';
+import { replaceLogger, type Logger } from './services';
 import { execRoutePreFetch } from './router';
 
 const render = async (context: Context, logger: Logger) => {

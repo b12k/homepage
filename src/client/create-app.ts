@@ -1,9 +1,9 @@
 import { createHead } from '@unhead/vue';
 import { createSSRApp } from 'vue';
-import { createPinia, StateTree } from 'pinia';
-import { createRouter, RouterHistory } from 'vue-router';
+import { createPinia, type StateTree } from 'pinia';
+import { createRouter, type RouterHistory } from 'vue-router';
 
-import { Context } from '@server';
+import type { Context } from '@server';
 import App from './app.vue';
 import { routes } from './router';
 import { logger } from './services';

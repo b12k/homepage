@@ -6,12 +6,13 @@
   <main class="page-projects container">
     <h1 class="mb-4">Projects</h1>
     <div class="row g-3">
-      <div
-        v-for="i in 12"
-        :key="i"
-        class="col-12 col-sm-6 col-md-4 col-lg-3 col-xxl-2"
-      >
-        <OssCard />
+      <div v-for="i in 12" :key="i" class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <OssCard
+          href="https://github.com"
+          description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ad expedita harum iure perferendis provident."
+          title="Awesome Project"
+          src="https://via.placeholder.com/640x360"
+        />
       </div>
     </div>
   </main>

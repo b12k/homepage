@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-import { Context } from '@server';
+import { type Context } from '@server';
 
 export const useContextStore = defineStore('context', {
   state(): Context {

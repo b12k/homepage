@@ -1,4 +1,4 @@
-import { RuleSetRule } from 'webpack';
+import { type RuleSetRule } from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import env from './env';
 

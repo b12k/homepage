@@ -1,5 +1,5 @@
 import { Module } from 'webpack';
-import { ManifestPluginOptions } from 'webpack-manifest-plugin';
+import { type ManifestPluginOptions } from 'webpack-manifest-plugin';
 
 export const uniqArray = <T>(array: Array<T>) => [...new Set(array)];
 

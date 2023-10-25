@@ -1,4 +1,4 @@
-import { RequestHandler } from 'express';
+import type { RequestHandler } from 'express';
 import serialize from 'serialize-javascript';
 import nunjucks from 'nunjucks';
 import { diff } from 'deep-object-diff';
@@ -9,8 +9,8 @@ import {
   computeIdempotencyKey,
   cacheService,
   getCriticalCss,
-  BuildContext,
-  Context,
+  type BuildContext,
+  type Context,
 } from '../services';
 import { getContext } from './context.middleware';
 import { stringToBase64 } from '../utils';

@@ -1,7 +1,7 @@
-import { Request } from 'express';
+import { type Request } from 'express';
 import UaParser from 'ua-parser-js';
 
-import { env as _env, Env } from '../env';
+import { env as _env, type Env } from '../env';
 import { createRequestPropertyExtractor, overrideEnv } from '../utils';
 
 interface Device {

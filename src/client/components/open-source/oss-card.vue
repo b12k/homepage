@@ -1,15 +1,16 @@
+<script lang="ts" setup>
+  import type { OssCardProps } from './types';
+  import { BaseImage } from '../base';
+
+  const props = defineProps<OssCardProps>();
+</script>
 <template>
   <article class="card shadow-sm">
-    <img
-      src="http://via.placeholder.com/640x360"
-      class="card-img-top"
-      alt="..."
-    />
+    <BaseImage class="card-img-top" :src="props.src" :alt="props.alt" lazy />
     <div class="card-body">
-      <h5 class="card-title">Env-Cmd</h5>
+      <h5 class="card-title">{{ props.title }}</h5>
       <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
+        {{ props.description }}
       </p>
     </div>
   </article>

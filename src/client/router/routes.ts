@@ -1,5 +1,4 @@
-import { RouteRecordRaw } from 'vue-router';
-// import PageShell from '../pages/_page-shell.vue';
+import { type RouteRecordRaw } from 'vue-router';
 
 type RouteRecordRawNamed = RouteRecordRaw & { name: string };
 export const routes: Array<RouteRecordRawNamed> = [

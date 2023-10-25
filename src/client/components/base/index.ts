@@ -4,3 +4,4 @@ export { default as BaseFooter } from './base-footer.vue';
 export { default as BaseButton } from './base-button.vue';
 export { default as BaseLayout } from './base-layout.vue';
 export { default as BaseCookieConsent } from './base-cookie-consent.vue';
+export { default as BaseImage, type BaseImageProps } from './base-image.vue';

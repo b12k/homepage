@@ -1,4 +1,4 @@
-import { ErrorRequestHandler } from 'express';
+import { type ErrorRequestHandler } from 'express';
 import serialize from 'serialize-javascript';
 
 import type { AxiosError } from 'axios';

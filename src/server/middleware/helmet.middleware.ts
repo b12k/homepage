@@ -1,5 +1,5 @@
-import { RequestHandler } from 'express';
-import helmet, { HelmetOptions } from 'helmet';
+import { type RequestHandler } from 'express';
+import helmet, { type HelmetOptions } from 'helmet';
 
 export const helmetMiddleware =
   (isEnabled: boolean): RequestHandler =>
@@ -13,6 +13,7 @@ export const helmetMiddleware =
       contentSecurityPolicy: {
         directives: {
           scriptSrc: ["'self'", `'nonce-${requestId}'`, "'unsafe-eval'"],
+          imgSrc: ["'self'", 'data:', 'https://via.placeholder.com'],
         },
       },
     };

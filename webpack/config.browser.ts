@@ -24,11 +24,11 @@ const config: Configuration = {
     filename: getFilenameJs('[name]', env.IS_PROD),
     chunkFilename: getFilenameJs('chunk', env.IS_PROD),
   },
-  cache: {
-    type: 'filesystem',
-    cacheDirectory: env.CACHE_DIR,
-    name: `browser-${env.IS_PROD ? 'prod' : 'dev'}`,
-  },
+  // cache: {
+  //   type: 'filesystem',
+  //   cacheDirectory: env.CACHE_DIR,
+  //   name: `browser-${env.IS_PROD ? 'prod' : 'dev'}`,
+  // },
   module: {
     rules: [
       ...(baseConfig.module?.rules || []),
