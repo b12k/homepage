@@ -7,12 +7,12 @@ export const tsLoader: RuleSetRule = {
   loader: 'swc-loader',
   options: {
     jsc: {
-      target: 'es2022',
+      target: 'esnext',
       parser: {
         syntax: 'typescript',
       },
     },
-    sourceMaps: false,
+    sourceMaps: env.IS_PROD,
   },
 };
 

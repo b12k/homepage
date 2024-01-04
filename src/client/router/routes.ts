@@ -1,6 +1,14 @@
 import { type RouteRecordRaw } from 'vue-router';
 
+declare module 'vue-router' {
+  interface RouteMeta {
+    responseCode?: number;
+    noPreFetchAwait?: boolean;
+  }
+}
+
 type RouteRecordRawNamed = RouteRecordRaw & { name: string };
+
 export const routes: Array<RouteRecordRawNamed> = [
   {
     name: 'home',

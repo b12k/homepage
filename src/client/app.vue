@@ -23,8 +23,9 @@
     ],
   });
 
+  const route = useRoute();
   const isHomeRoute = computed(() =>
-    useRoute().matched.some(({ name }) => name === 'home'),
+    route.matched.some(({ name }) => name === 'home'),
   );
 </script>
 

@@ -1,17 +1,10 @@
 import type { RouteLocationNormalized } from 'vue-router';
 
-export {};
-
-declare module '@vue/runtime-core' {
+declare module 'vue' {
   interface ComponentCustomOptions {
     fetchData?: (to: RouteLocationNormalized) => unknown;
     shouldReFetch?: boolean;
   }
 }
 
-declare module 'vue-router' {
-  interface RouteMeta {
-    responseCode?: number;
-    noPreFetchAwait?: boolean;
-  }
-}
+export {};
