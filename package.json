@@ -7,8 +7,11 @@
   "private": true,
   "engines": {
     "node": "20",
-    "yarn": "1"
+    "pnpm": "8",
+    "yarn": "use pnpm",
+    "npm": "use pnpm"
   },
+  "packageManager": "pnpm@8.14.0",
   "scripts": {
     "dev": "run-s _clean _dev",
     "qc": "run-p tsc lint build",
@@ -17,9 +20,9 @@
     "prettify": "prettier . --ignore-path .gitignore",
     "build": "run-s _clean _build",
     "build:docker": "docker build . -t vueltimate-boilerplate:latest",
-    "build:stats": "cross-env WITH_STATS=true yarn build",
+    "build:stats": "cross-env WITH_STATS=true pnpm build",
     "start": "node dist | pino-pretty",
-    "start:local": "nodemon --watch src --watch .env --ext * --exec \"yarn build && cross-env NODE_ENV=production env-cmd --no-override node ./dist\"",
+    "start:local": "nodemon --watch src --watch .env --ext * --exec \"pnpm build && cross-env NODE_ENV=production env-cmd --no-override node ./dist\"",
     "⚙️": "######################## TECHNICAL SCRIPTS ########################",
     "prepare": "run-p _prepare:*",
     "_prepare:env": "shx cp -u .env.example .env",
@@ -31,7 +34,7 @@
     "_dev:server": "run-s _dev:server:wait _dev:server:run",
     "_dev:server:wait": "env-cmd -i wait-on http://localhost:{{WDS_PORT}}/public/manifest.json",
     "_dev:server:run": "nodemon",
-    "_dev:public": "yarn _build:public --watch",
+    "_dev:public": "pnpm _build:public --watch",
     "_dev:docker-compose": "docker compose up -d",
     "_lint:stylelint": "stylelint \"**/*.{css,scss,vue}\" --ignore-path .gitignore",
     "_lint:eslint": "eslint . --ignore-path .gitignore",
@@ -47,7 +50,7 @@
     "🪝": "############################ GIT HOOKS ############################",
     "_git:commit-msg": "commitlint",
     "_git:pre-commit": "run-p _git:pre-commit:*",
-    "_git:pre-commit:tsc": "yarn tsc",
+    "_git:pre-commit:tsc": "pnpm tsc",
     "_git:pre-commit:lint-staged": "lint-staged",
     "_git:pre-push": "branch-name-lint"
   },
