@@ -1,4 +1,4 @@
-import compression from 'shrink-ray-without-zopfli';
+import compression from '@nitedani/shrink-ray-current';
 import express, { static as serveStatic } from 'express';
 import nunjucks from 'nunjucks';
 import cookieParser from 'cookie-parser';

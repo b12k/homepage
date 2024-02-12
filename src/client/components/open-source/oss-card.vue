@@ -5,8 +5,10 @@
   const props = defineProps<OssCardProps>();
 </script>
 <template>
-  <article class="card shadow-sm">
-    <BaseImage class="card-img-top" :src="props.src" :alt="props.alt" lazy />
+  <article class="oss-card card shadow-sm">
+    <div class="card-img-top ratio ratio-16x9">
+      <BaseImage :src="props.src" :alt="props.alt" lazy />
+    </div>
     <div class="card-body">
       <h5 class="card-title">{{ props.title }}</h5>
       <p class="card-text">

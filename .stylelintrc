@@ -7,9 +7,7 @@
   "overrides": [
     {
       "files": ["**/*.vue"],
-      "extends": [
-        "stylelint-config-html/vue"
-      ]
+      "extends": ["stylelint-config-html/vue"]
     },
     {
       "files": ["**/*.njk"],

@@ -9,9 +9,14 @@
 </script>
 <template>
   <img
+    class="base-image"
     :src="props.src"
-    class="card-img-top"
     :alt="props.alt"
     :loading="props.lazy ? 'lazy' : 'eager'"
   />
 </template>
+<style lang="scss">
+  .base-image {
+    object-fit: cover;
+  }
+</style>
