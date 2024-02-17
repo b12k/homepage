@@ -1,9 +1,6 @@
 import { resolve } from 'node:path';
 import { hostname } from 'node:os';
-import { configDotenv } from 'dotenv';
 import Surenv from 'surenv';
-
-configDotenv();
 
 const { required, optional } = new Surenv();
 
