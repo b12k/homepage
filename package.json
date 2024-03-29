@@ -150,7 +150,7 @@
     "cookie-parser": "1.4.6",
     "decache": "4.6.2",
     "deep-object-diff": "1.1.9",
-    "express": "4.18.2",
+    "express": "4.19.2",
     "helmet": "7.1.0",
     "js-cookie": "3.0.5",
     "lodash": "4.17.21",
