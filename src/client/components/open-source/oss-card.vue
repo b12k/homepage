@@ -5,7 +5,7 @@
   const props = defineProps<OssCardProps>();
 </script>
 <template>
-  <article class="oss-card card shadow-sm">
+  <article class="oss-card card shadow-sm overflow-hidden">
     <div class="card-img-top ratio ratio-16x9">
       <BaseImage :src="props.src" :alt="props.alt" lazy />
     </div>

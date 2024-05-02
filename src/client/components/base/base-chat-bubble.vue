@@ -4,7 +4,7 @@
 <style lang="scss">
   $black: #000;
   $white: #fff;
-  $shadow: rgb(0 0 0 / 10%);
+  $shadow: rgb(0 0 0 / 20%);
   $px: 4px;
   $bubble-border:
     0 -1 * $px $white,
@@ -29,8 +29,8 @@
     box-shadow:
       $bubble-border,
       $px 3 * $px $shadow,
-      3 * $px $px $shadow,
-      2 * $px 2 * $px $shadow;
+      -3 * $px $px $shadow,
+      -2 * $px 2 * $px $shadow;
     box-sizing: border-box;
     margin-right: 3 * $px;
 

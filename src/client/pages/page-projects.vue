@@ -11,7 +11,7 @@
           href="https://github.com"
           description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ad expedita harum iure perferendis provident."
           title="Awesome Project"
-          src="https://via.placeholder.com/640x360"
+          :src="`https://picsum.photos/600?i=${i}`"
         />
       </div>
     </div>

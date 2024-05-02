@@ -93,3 +93,15 @@
     </Transition>
   </div>
 </template>
+<style lang="scss">
+  .base-cookie-consent {
+    img {
+      filter: drop-shadow(-3px -3px 5px #333);
+      z-index: 10000;
+    }
+
+    .base-chat-bubble {
+      z-index: 10001;
+    }
+  }
+</style>
