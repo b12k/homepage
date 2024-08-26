@@ -1,37 +1,36 @@
 import compression from '@nitedani/shrink-ray-current';
+import cookieParser from 'cookie-parser';
 import express, { static as serveStatic } from 'express';
 import nunjucks from 'nunjucks';
-import cookieParser from 'cookie-parser';
 import serveFavicon from 'serve-favicon';
 
 import { env } from './env';
-
 import {
-  ssrMiddleware,
+  contextMiddleware,
   errorMiddleware,
   healthMiddleware,
   helmetMiddleware,
-  contextMiddleware,
   languageMiddleware,
+  ssrMiddleware,
 } from './middleware';
 import { cacheService, loggerService } from './services';
 import { getLanguage, printDevelopmentBanner } from './utils';
 
 export const startServer = async () => {
   await cacheService.initialize({
-    redisUrl: env.REDIS_URL,
-    renderCacheTtl: Number(env.RENDER_CACHE_TTL),
-    renderCacheSalt: env.RENDER_CACHE_SALT,
-    criticalCssCacheTtl: Number(env.CRITICAL_CSS_CACHE_TTL),
     criticalCssCacheSalt: env.CRITICAL_CSS_CACHE_SALT,
+    criticalCssCacheTtl: Number(env.CRITICAL_CSS_CACHE_TTL),
+    redisUrl: env.REDIS_URL,
+    renderCacheSalt: env.RENDER_CACHE_SALT,
+    renderCacheTtl: Number(env.RENDER_CACHE_TTL),
   });
 
   const app = express();
 
   nunjucks
     .configure(env.VIEWS_PATH, {
-      express: app,
       autoescape: true,
+      express: app,
     })
     .addGlobal('env', env);
 
@@ -46,8 +45,8 @@ export const startServer = async () => {
     .use(
       '/public',
       serveStatic(env.PUBLIC_PATH, {
-        maxAge: '7d',
         etag: false,
+        maxAge: '7d',
       }),
     )
     .use('/:lang?', languageMiddleware)

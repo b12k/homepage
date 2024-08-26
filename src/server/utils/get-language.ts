@@ -1,4 +1,5 @@
 import type { Request } from 'express';
+
 import { env } from '../env';
 
 export const acceptedLanguages = env.ACCEPTED_LANGUAGES.split(',').map((l) =>
@@ -6,7 +7,7 @@ export const acceptedLanguages = env.ACCEPTED_LANGUAGES.split(',').map((l) =>
 );
 
 export const getLanguage = (request: Request) => {
-  const { params, cookies } = request;
+  const { cookies, params } = request;
 
   return ((acceptedLanguages.includes(params.lang) && params.lang) ||
     (acceptedLanguages.includes(cookies.lang as string) && cookies.lang) ||

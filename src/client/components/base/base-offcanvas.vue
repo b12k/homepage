@@ -1,6 +1,7 @@
 <script setup lang="ts">
-  import { useRoute } from 'vue-router';
   import { onMounted, ref, watch } from 'vue';
+  import { useRoute } from 'vue-router';
+
   import BaseIcon from './base-icon.vue';
 
   const route = useRoute();
@@ -18,18 +19,18 @@
 <template>
   <span class="base-offcanvas">
     <button
-      class="btn btn-outline-danger"
-      type="button"
-      data-bs-toggle="offcanvas"
       :data-bs-target="`#${OFFCANVAS_ID}`"
+      class="btn btn-outline-danger"
+      data-bs-toggle="offcanvas"
+      type="button"
     >
       <BaseIcon icon="Hamburger" />
       Menu
     </button>
-    <teleport v-if="$isMounted" to="body">
+    <teleport to="body" v-if="$isMounted">
       <div :id="OFFCANVAS_ID" class="offcanvas offcanvas-end" tabindex="-1">
         <div class="offcanvas-header">
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" />
+          <button class="btn-close" data-bs-dismiss="offcanvas" type="button" />
         </div>
         <div class="offcanvas-body">
           <slot />

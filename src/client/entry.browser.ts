@@ -2,10 +2,10 @@ import '@popperjs/core';
 import 'bootstrap';
 import { createWebHistory } from 'vue-router';
 
-import './styles/main.scss';
 import { createApp, type InitialState } from './create-app';
 import { execRoutePreFetch } from './router';
 import { logger } from './services';
+import './styles/main.scss';
 import { deserialize } from './utils';
 
 declare global {
@@ -30,7 +30,6 @@ declare global {
       await execRoutePreFetch(to, from);
       return true;
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.error(error);
       return false;
     }

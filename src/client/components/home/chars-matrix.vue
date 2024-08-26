@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-  import { onBeforeUnmount, onMounted, ref, computed } from 'vue';
+  import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
+
   import { useCharMatrixStore, useContextStore } from '../../store';
 
   const charMatrixStore = useCharMatrixStore();
@@ -39,29 +40,29 @@
 </script>
 <template>
   <section
-    ref="$element"
-    class="chars-matrix container-fluid d-flex flex-column justify-content-around"
     :class="{
       'is-landscape': isLandscape,
     }"
+    class="chars-matrix container-fluid d-flex flex-column justify-content-around"
+    ref="$element"
   >
     <div
-      v-for="(rows, rowIdx) in rowsOfChars"
       :key="rowIdx"
       class="font-monospace row fw-lighter text-white-50 g-0"
+      v-for="(rows, rowIdx) in rowsOfChars"
     >
       <div
-        v-for="({ char, isBit }, charIdx) in rows"
-        :key="`${rowIdx}-${charIdx}`"
-        class="chars-matrix-char col text-center"
         :class="{
           'fw-bold text-white': !isBit,
         }"
+        :key="`${rowIdx}-${charIdx}`"
+        class="chars-matrix-char col text-center"
+        v-for="({ char, isBit }, charIdx) in rows"
       >
         <Transition
-          mode="out-in"
           enter-active-class="animate__fadeIn"
           leave-active-class="animate__fadeOut fw-lighter"
+          mode="out-in"
         >
           <span :key="char" class="animate__animated animate__slow">
             {{ char }}

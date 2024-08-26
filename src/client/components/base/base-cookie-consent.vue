@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-  import { nextTick, onMounted, ref } from 'vue';
   import JsCookie from 'js-cookie';
-  import BaseChatBubble from './base-chat-bubble.vue';
+  import { nextTick, onMounted, ref } from 'vue';
+
   import { wait } from '../../utils';
+  import BaseChatBubble from './base-chat-bubble.vue';
 
   const isCookieConsentAccepted = ref(false);
   const canShowCookieConsent = ref(false);
@@ -45,14 +46,14 @@
 </script>
 <template>
   <div
-    v-if="canShowCookieConsent"
     class="base-cookie-consent position-fixed bottom-0 end-0 d-flex flex-column align-items-end"
+    v-if="canShowCookieConsent"
   >
     <Transition
       enter-active-class="animate__bounceIn"
       leave-active-class="animate__bounceOut"
     >
-      <BaseChatBubble v-if="canShowChatBubble" class="animate__animated">
+      <BaseChatBubble class="animate__animated" v-if="canShowChatBubble">
         <h4>🍪 Cookies!</h4>
         <p>
           This website uses them.
@@ -63,14 +64,14 @@
         </p>
         <div class="d-flex gap-1 overflow-hidden">
           <button
-            class="btn btn-sm btn-light flex-grow-1"
             @click="hideChatBubbleAndImage"
+            class="btn btn-sm btn-light flex-grow-1"
           >
             Close
           </button>
           <button
-            class="btn btn-sm btn-success flex-grow-1"
             @click="acceptCookieConsent"
+            class="btn btn-sm btn-success flex-grow-1"
           >
             I'm OK with it
           </button>
@@ -82,13 +83,13 @@
       leave-active-class="animate__slideOutDown"
     >
       <img
-        v-if="canShowImage"
-        ref="$img"
-        class="animate__animated animate__faster"
-        width="180"
-        height="180"
-        src="../../assets/images/cookies_bear.png"
         alt="Cookies!"
+        class="animate__animated animate__faster"
+        height="180"
+        ref="$img"
+        src="../../assets/images/cookies_bear.png"
+        v-if="canShowImage"
+        width="180"
       />
     </Transition>
   </div>

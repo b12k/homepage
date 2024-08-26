@@ -1,19 +1,20 @@
+import type { Logger, RenderResult } from '@client';
 import type { RequestHandler } from 'express';
-import serialize from 'serialize-javascript';
-import nunjucks from 'nunjucks';
-import { diff } from 'deep-object-diff';
 
-import type { RenderResult, Logger } from '@client';
+import { diff } from 'deep-object-diff';
+import nunjucks from 'nunjucks';
+import serialize from 'serialize-javascript';
+
 import {
-  loadSsrAssets,
-  computeIdempotencyKey,
-  cacheService,
-  getCriticalCss,
   type BuildContext,
+  cacheService,
+  computeIdempotencyKey,
   type Context,
+  getCriticalCss,
+  loadSsrAssets,
 } from '../services';
-import { getContext } from './context.middleware';
 import { stringToBase64 } from '../utils';
+import { getContext } from './context.middleware';
 
 export const ssrMiddleware: RequestHandler = async (
   request,
@@ -24,10 +25,10 @@ export const ssrMiddleware: RequestHandler = async (
     const responseStartedAt = Date.now();
     const context = getContext();
     const {
-      isRenderCacheEnabled,
       isCriticalCssCacheEnabled,
-      shouldRefreshRenderCache,
+      isRenderCacheEnabled,
       shouldRefreshCriticalCssCache,
+      shouldRefreshRenderCache,
     } = context;
 
     let isCriticalCssCached = false;
@@ -35,7 +36,7 @@ export const ssrMiddleware: RequestHandler = async (
 
     const renderCacheKey =
       isRenderCacheEnabled && computeIdempotencyKey(context);
-    const { render, manifest } = await loadSsrAssets();
+    const { manifest, render } = await loadSsrAssets();
 
     // section Read Cache
     /*
@@ -130,12 +131,12 @@ export const ssrMiddleware: RequestHandler = async (
      */
 
     const page = nunjucks.render('index.njk', {
+      context,
+      criticalCss,
       head,
       html,
-      state: serialize(state),
-      context,
       manifest,
-      criticalCss,
+      state: serialize(state),
     });
 
     // section Response
@@ -199,8 +200,8 @@ export const ssrMiddleware: RequestHandler = async (
         renderResult.state.context = {
           ...renderedContext,
           ...renderedContext.cached,
-          isContextPatched: false,
           cached: undefined,
+          isContextPatched: false,
         } as Context;
       }
       cacheService.setRender(renderCacheKey, JSON.stringify(renderResult));

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
   export interface BaseHeaderNavProps {
     links: Array<{
-      name: string;
       emoji: string;
       label: string;
+      name: string;
     }>;
   }
 
@@ -11,10 +11,10 @@
 </script>
 <template>
   <ul class="base-header-nav navbar-nav gap-2">
-    <li v-for="link in props.links" :key="link.name" class="nav-item">
+    <li :key="link.name" class="nav-item" v-for="link in props.links">
       <RouterLink
-        class="nav-link text-black px-0 d-block d-lg-inline-block text-center pe-2 pe-lg-1"
         :to="{ name: link.name }"
+        class="nav-link text-black px-0 d-block d-lg-inline-block text-center pe-2 pe-lg-1"
       >
         {{ link.emoji }} {{ link.label }}
       </RouterLink>

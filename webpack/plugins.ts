@@ -1,17 +1,17 @@
-import { VueLoaderPlugin } from 'vue-loader';
-import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
-import { DefinePlugin, ProgressPlugin } from 'webpack';
-import TerserPlugin from 'terser-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { BundleStatsWebpackPlugin } from 'bundle-stats-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
+import { VueLoaderPlugin } from 'vue-loader';
+import { DefinePlugin, ProgressPlugin } from 'webpack';
+import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
 
 import { generateManifest } from './utils';
 
 export const bundleStatsWebpackPlugin = new BundleStatsWebpackPlugin();
 export const miniCssExtractPlugin = new MiniCssExtractPlugin({
-  filename: 'public/css/[name].[contenthash:8].css',
   chunkFilename: 'public/css/chunk.[contenthash:8].css',
+  filename: 'public/css/[name].[contenthash:8].css',
 });
 export const terserPlugin = new TerserPlugin({
   extractComments: false,

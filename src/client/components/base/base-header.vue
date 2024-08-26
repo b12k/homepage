@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-  import BaseIcon from './base-icon.vue';
   import BaseHeaderNav, {
     type BaseHeaderNavProps,
   } from './base-header-nav.vue';
+  import BaseIcon from './base-icon.vue';
   import BaseOffcanvas from './base-offcanvas.vue';
 
   const links: BaseHeaderNavProps['links'] = [
@@ -37,7 +37,7 @@
           :to="{ name: 'home' }"
           class="navbar-brand d-flex align-items-center gap-2"
         >
-          <BaseIcon icon="DigitalBrain" class="display-6" />
+          <BaseIcon class="display-6" icon="DigitalBrain" />
           <span
             class="d-inline-flex flex-column justify-content-center h-100 fw-bold full-name"
           >

@@ -1,24 +1,25 @@
-import { type RuleSetRule } from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { type RuleSetRule } from 'webpack';
+
 import env from './env';
 
 export const tsLoader: RuleSetRule = {
-  test: /\.ts$/,
   loader: 'swc-loader',
   options: {
     jsc: {
-      target: 'esnext',
       parser: {
         syntax: 'typescript',
       },
+      target: 'esnext',
     },
     sourceMaps: env.IS_PROD,
   },
+  test: /\.ts$/,
 };
 
 export const vueLoader: RuleSetRule = {
-  test: /\.vue$/,
   loader: 'vue-loader',
+  test: /\.vue$/,
 };
 
 export const sassLoader: RuleSetRule = {
@@ -37,18 +38,20 @@ export const sassIgnoreLoader: RuleSetRule = {
 };
 
 export const iconsLoader: RuleSetRule = {
-  test: /\.svg$/,
   include: env.ICONS_FOLDER_PATH,
+  test: /\.svg$/,
   type: 'asset/source',
 };
 
 export const createImageLoader = (isSSR = false): RuleSetRule => ({
-  test: /\.(png|gif|jpe?g|svg|webp)$/,
   exclude: env.ICONS_FOLDER_PATH,
+  test: /\.(png|gif|jpe?g|svg|webp)$/,
+  type: 'javascript/auto',
   use: [
     {
       loader: 'url-loader',
       options: {
+        esModule: false,
         fallback: {
           loader: 'file-loader',
           options: {
@@ -60,9 +63,7 @@ export const createImageLoader = (isSSR = false): RuleSetRule => ({
         name: `${isSSR ? '/' : ''}public/images/[ext]/[name]${
           env.IS_PROD ? '.[contenthash:8]' : ''
         }.[ext]`,
-        esModule: false,
       },
     },
   ],
-  type: 'javascript/auto',
 });

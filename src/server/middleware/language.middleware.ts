@@ -1,5 +1,6 @@
 import { type RequestHandler } from 'express';
-import { getLanguage, acceptedLanguages } from '../utils';
+
+import { acceptedLanguages, getLanguage } from '../utils';
 
 export const languageMiddleware: RequestHandler = (request, response, next) => {
   const { params } = request;

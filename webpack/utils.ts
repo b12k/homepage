@@ -13,16 +13,16 @@ export const getVendorName = ({ context }: Module) => {
 };
 
 const reduceManifestFiles = (array: Array<string>) =>
-  array.reduce<{ js: Array<string>; css: Array<string> }>(
-    (acc, next) => {
+  array.reduce<{ css: Array<string>; js: Array<string> }>(
+    (accumulator, next) => {
       if (/\.js$/.test(next)) {
-        acc.js.push(next);
+        accumulator.js.push(next);
       } else if (/\.css$/.test(next)) {
-        acc.css.push(next);
+        accumulator.css.push(next);
       }
-      return acc;
+      return accumulator;
     },
-    { js: [], css: [] },
+    { css: [], js: [] },
   );
 
 export const generateManifest: ManifestPluginOptions['generate'] = (
@@ -42,13 +42,13 @@ export const generateManifest: ManifestPluginOptions['generate'] = (
     files.filter(({ isInitial }) => !isInitial).map(({ path }) => path),
   );
   return {
-    js: {
-      initial: initial.js,
-      async: async.js,
-    },
     css: {
-      initial: initial.css,
       async: uniqArray(async.css),
+      initial: initial.css,
+    },
+    js: {
+      async: async.js,
+      initial: initial.js,
     },
   };
 };

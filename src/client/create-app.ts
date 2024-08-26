@@ -1,14 +1,15 @@
+import type { Context } from '@server';
+
 import { createHead } from '@unhead/vue';
-import { createSSRApp } from 'vue';
 import { createPinia, type StateTree } from 'pinia';
+import { createSSRApp } from 'vue';
 import { createRouter, type RouterHistory } from 'vue-router';
 
-import type { Context } from '@server';
 import App from './app.vue';
 import { routes } from './router';
 import { logger } from './services';
 
-export type InitialState = StateTree & { context: Context };
+export type InitialState = { context: Context } & StateTree;
 
 export const createApp = async (
   history: RouterHistory,
@@ -36,7 +37,7 @@ export const createApp = async (
   return {
     app,
     head,
-    store,
     router,
+    store,
   };
 };
