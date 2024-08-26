@@ -1,5 +1,5 @@
 {
-  "*": ["pnpm prettier --check --ignore-unknown"],
+  "*": ["pnpm _prettier -c"],
   "*.{css,scss,vue,STYLELINT}": ["pnpm stylelint"],
   "*.{ts,vue,ESLINT}": ["pnpm eslint"]
 }
