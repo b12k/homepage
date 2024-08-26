@@ -1,5 +1,7 @@
 <template>
-  <div class="base-chat-bubble p-2"><slot /></div>
+  <div class="base-chat-bubble p-2">
+    <slot />
+  </div>
 </template>
 <style lang="scss">
   $black: #000;

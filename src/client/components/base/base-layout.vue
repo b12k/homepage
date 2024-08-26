@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-  import BaseHeader from './base-header.vue';
   import BaseFooter from './base-footer.vue';
+  import BaseHeader from './base-header.vue';
 
   const props = withDefaults(
     defineProps<{
-      isHeaderVisible: boolean;
       isFooterVisible: boolean;
+      isHeaderVisible: boolean;
     }>(),
     {
       isFooterVisible: true,
@@ -17,24 +17,24 @@
 <template>
   <section class="base-layout d-flex flex-column h-100">
     <Transition
-      mode="out-in"
       enter-active-class="animate__slideInDown"
       leave-active-class="animate__slideOutUp"
+      mode="out-in"
     >
       <BaseHeader
-        v-if="props.isHeaderVisible"
         class="animate__animated animate-fastest"
+        v-if="props.isHeaderVisible"
       />
     </Transition>
     <slot />
     <Transition
-      mode="out-in"
       enter-active-class="animate__slideInUp"
       leave-active-class="animate__slideOutDown"
+      mode="out-in"
     >
       <BaseFooter
-        v-if="props.isFooterVisible"
         class="animate__animated animate-fastest"
+        v-if="props.isFooterVisible"
       />
     </Transition>
   </section>

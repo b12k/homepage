@@ -12,8 +12,8 @@ export const helmetMiddleware =
     const options: HelmetOptions = {
       contentSecurityPolicy: {
         directives: {
-          scriptSrc: ["'self'", `'nonce-${requestId}'`, "'unsafe-eval'"],
           imgSrc: ["'self'", 'data:', 'https://via.placeholder.com'],
+          scriptSrc: ["'self'", `'nonce-${requestId}'`, "'unsafe-eval'"],
         },
       },
     };

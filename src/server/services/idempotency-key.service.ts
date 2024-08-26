@@ -1,25 +1,25 @@
 import { createHash } from 'node:crypto';
 import { match } from 'path-to-regexp';
 
-import { type Context } from './context-builder.service';
 import config from '../idempotency.config';
+import { type Context } from './context-builder.service';
 
-type FalsyValue = false | null | undefined | 0;
+type FalsyValue = 0 | false | null | undefined;
 
 type ComputeKeyFunction = (
   context: Context,
-  params: Record<string, string>,
-) => string | FalsyValue;
+  parameters: Record<string, string>,
+) => FalsyValue | string;
 
 type BeforeAfterComputeKeyFunction = (
   context: Context,
-  params: Record<string, string>,
-) => string | boolean;
+  parameters: Record<string, string>,
+) => boolean | string;
 
 export type IdempotencyConfig = {
-  paths: Record<string, ComputeKeyFunction>;
-  beforeCompute?: BeforeAfterComputeKeyFunction;
   afterCompute?: BeforeAfterComputeKeyFunction;
+  beforeCompute?: BeforeAfterComputeKeyFunction;
+  paths: Record<string, ComputeKeyFunction>;
 };
 
 const trimSlashes = (path: string) => path.replaceAll(/^\/|\/$/g, '');
@@ -41,20 +41,20 @@ export const computeIdempotencyKey = (context: Context) => {
 
   if (!matched) return false;
 
-  const params = matched.params as Record<string, string>;
+  const parameters = matched.params as Record<string, string>;
 
   const keyBeforeComputed = config.beforeCompute
-    ? config.beforeCompute(context, params)
+    ? config.beforeCompute(context, parameters)
     : '';
 
   if (keyBeforeComputed === false) return false;
 
-  const computedKey = config.paths[matched.key](context, params);
+  const computedKey = config.paths[matched.key](context, parameters);
 
   if (!computedKey) return false;
 
   const keyAfterComputed = config.afterCompute
-    ? config.afterCompute(context, params)
+    ? config.afterCompute(context, parameters)
     : '';
 
   if (keyAfterComputed === false) return false;

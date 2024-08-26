@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { onMounted, ref } from 'vue';
+
   import { BaseIcon } from '../base';
 
   const animationClass = ref<string>();
@@ -26,16 +27,16 @@
     class="floating-link-bar w-100 d-flex justify-content-center p-4 position-absolute bottom-0"
   >
     <div
-      class="floating-link-bar-link"
       :class="animationClass"
-      @mouseover="handleIconMouseOver"
       @animationend="handleIconAnimationEnd"
+      @mouseover="handleIconMouseOver"
+      class="floating-link-bar-link"
     >
       <RouterLink
-        class="d-flex flex-column h-100 w-100 justify-content-center text-center h1"
         :to="{
           name: 'about',
         }"
+        class="d-flex flex-column h-100 w-100 justify-content-center text-center h1"
       >
         <BaseIcon icon="ShakaBrah" />
       </RouterLink>

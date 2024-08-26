@@ -1,8 +1,8 @@
+import { getMatchedComponents } from '@b12k/vue3-router-gmc';
 import {
   type RouteLocationNormalized,
   type RouteLocationNormalizedLoaded,
 } from 'vue-router';
-import { getMatchedComponents } from '@b12k/vue3-router-gmc';
 
 export const execRoutePreFetch = async (
   to: RouteLocationNormalized,

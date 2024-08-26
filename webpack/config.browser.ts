@@ -1,33 +1,45 @@
-import 'webpack-dev-server';
-import { resolve } from 'node:path';
 import type { Configuration } from 'webpack';
+
+import path from 'node:path';
+import 'webpack-dev-server';
+
 import baseConfig from './config.base';
-import { sassLoader, createImageLoader } from './loaders';
-import { getVendorName, getFilenameJs } from './utils';
+import env from './env';
+import { createImageLoader, sassLoader } from './loaders';
 import {
+  bundleStatsWebpackPlugin,
   miniCssExtractPlugin,
   terserPlugin,
   webpackClientManifestPlugin,
   webpackProgressPlugin,
-  bundleStatsWebpackPlugin,
 } from './plugins';
-import env from './env';
+import { getFilenameJs, getVendorName } from './utils';
 
 const config: Configuration = {
   ...baseConfig,
-  entry: {
-    app: './src/client/entry.browser.ts',
-  },
-  output: {
-    path: resolve(__dirname, '../dist'),
-    publicPath: env.IS_PROD ? '/' : `http://localhost:${env.WDS_PORT}/`,
-    filename: getFilenameJs('[name]', env.IS_PROD),
-    chunkFilename: getFilenameJs('chunk', env.IS_PROD),
-  },
   cache: {
-    type: 'filesystem',
     cacheDirectory: env.CACHE_DIR,
     name: `browser-${env.IS_PROD ? 'prod' : 'dev'}`,
+    type: 'filesystem',
+  },
+  devServer: {
+    client: {
+      overlay: {
+        warnings: false,
+      },
+    },
+    devMiddleware: {
+      writeToDisk: true,
+    },
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+    hot: true,
+    port: env.WDS_PORT,
+  },
+  devtool: env.IS_PROD ? 'source-map' : false,
+  entry: {
+    app: './src/client/entry.browser.ts',
   },
   module: {
     rules: [
@@ -35,6 +47,15 @@ const config: Configuration = {
       sassLoader,
       createImageLoader(),
     ],
+  },
+  output: {
+    chunkFilename: getFilenameJs('chunk', env.IS_PROD),
+    filename: getFilenameJs('[name]', env.IS_PROD),
+    path: path.resolve(__dirname, '../dist'),
+    publicPath: env.IS_PROD ? '/' : `http://localhost:${env.WDS_PORT}/`,
+  },
+  performance: {
+    hints: false,
   },
   plugins: [
     ...(baseConfig.plugins || []),
@@ -47,25 +68,6 @@ const config: Configuration = {
     colors: true,
     preset: 'normal',
   },
-  devServer: {
-    devMiddleware: {
-      writeToDisk: true,
-    },
-    client: {
-      overlay: {
-        warnings: false,
-      },
-    },
-    hot: true,
-    port: env.WDS_PORT,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
-  },
-  performance: {
-    hints: false,
-  },
-  devtool: env.IS_PROD ? 'source-map' : false,
 };
 
 if (env.IS_PROD) {
@@ -73,21 +75,21 @@ if (env.IS_PROD) {
     runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
-        vendor: {
-          chunks: 'initial',
-          // enforce: true,
-          test: /[/\\]node_modules[/\\]/,
-          name: getVendorName,
-          filename: getFilenameJs('vendor', env.IS_PROD),
-        },
         async: {
           chunks: 'async',
+          filename: getFilenameJs('vendor', env.IS_PROD),
+          minChunks: 2,
           // enforce: true,
           minSize: 0,
-          minChunks: 2,
-          test: /[/\\]node_modules[/\\]/,
           name: getVendorName,
+          test: /[/\\]node_modules[/\\]/,
+        },
+        vendor: {
+          chunks: 'initial',
           filename: getFilenameJs('vendor', env.IS_PROD),
+          name: getVendorName,
+          // enforce: true,
+          test: /[/\\]node_modules[/\\]/,
         },
       },
     },

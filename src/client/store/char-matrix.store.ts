@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+
 import { getRandomBit } from '../utils';
 
 const textLines = [
@@ -36,8 +37,8 @@ function buildRowsOfChars(lines: Array<string>) {
     [...line].map((char) => {
       const isBit = char === separator;
       return {
-        isBit,
         char: isBit ? getRandomBit() : char,
+        isBit,
       };
     }),
   );
@@ -47,14 +48,14 @@ const paddedTextLines = addPaddings(textLines);
 const paddedPlaceholderLines = addPaddings(placeholderLines);
 
 export const useCharMatrixStore = defineStore('charMatrix', {
-  state: () => ({
-    rowsOfChars: buildRowsOfChars(paddedTextLines),
-    placeholderRowsOfChars: buildRowsOfChars(paddedPlaceholderLines),
-  }),
   actions: {
     reBuildRowsOfChars() {
       this.rowsOfChars = buildRowsOfChars(paddedTextLines);
       this.placeholderRowsOfChars = buildRowsOfChars(paddedPlaceholderLines);
     },
   },
+  state: () => ({
+    placeholderRowsOfChars: buildRowsOfChars(paddedPlaceholderLines),
+    rowsOfChars: buildRowsOfChars(paddedTextLines),
+  }),
 });

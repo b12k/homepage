@@ -2,59 +2,59 @@ import { type RouteRecordRaw } from 'vue-router';
 
 declare module 'vue-router' {
   interface RouteMeta {
-    responseCode?: number;
     noPreFetchAwait?: boolean;
+    responseCode?: number;
   }
 }
 
-type RouteRecordRawNamed = RouteRecordRaw & { name: string };
+type RouteRecordRawNamed = { name: string } & RouteRecordRaw;
 
 export const routes: Array<RouteRecordRawNamed> = [
   {
+    component: () => import('../pages/page-home.vue'),
     name: 'home',
     path: '/',
-    component: () => import('../pages/page-home.vue'),
   },
   {
+    component: () => import('../pages/page-about.vue'),
     name: 'about',
     path: '/about',
-    component: () => import('../pages/page-about.vue'),
   },
   {
+    component: () => import('../pages/page-projects.vue'),
     name: 'projects',
     path: '/projects',
-    component: () => import('../pages/page-projects.vue'),
   },
   {
+    component: () => import('../pages/page-speaking.vue'),
     name: 'speaking',
     path: '/speaking',
-    component: () => import('../pages/page-speaking.vue'),
   },
   {
+    component: () => import('../pages/page-contact.vue'),
     name: 'contact',
     path: '/contact',
-    component: () => import('../pages/page-contact.vue'),
   },
   {
+    component: () => import('../pages/page-cookies.vue'),
     name: 'cookie-consent',
     path: '/cookies',
-    component: () => import('../pages/page-cookies.vue'),
   },
   {
-    name: 'error',
-    path: '/error',
     component: () => import('../pages/page-error.vue'),
     meta: {
       responseCode: 500,
     },
+    name: 'error',
+    path: '/error',
   },
   {
-    name: 'not-found',
-    path: '/404',
     component: () => import('../pages/page-not-found.vue'),
     meta: {
       responseCode: 404,
     },
+    name: 'not-found',
+    path: '/404',
   },
   {
     name: 'catch-not-found',
