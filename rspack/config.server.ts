@@ -1,17 +1,12 @@
-import type { Configuration } from 'webpack';
+import { defineConfig } from '@rspack/cli';
 
 import baseConfig from './config.base';
 import env from './env';
 import { createImageLoader, sassIgnoreLoader } from './loaders';
-import { webpackSsrManifestPlugin } from './plugins';
+import { createManifestPlugin, createProgressPlugin } from './plugins';
 
-const config: Configuration = {
+const config = defineConfig({
   ...baseConfig,
-  // cache: {
-  //   cacheDirectory: env.CACHE_DIR,
-  //   name: `server-${env.IS_PROD ? 'prod' : 'dev'}`,
-  //   type: 'filesystem',
-  // },
   devtool: false,
   entry: {
     index: './src/client/entry.server.ts',
@@ -19,8 +14,8 @@ const config: Configuration = {
   module: {
     rules: [
       ...(baseConfig.module?.rules || []),
-      sassIgnoreLoader,
       createImageLoader(true),
+      sassIgnoreLoader,
     ],
   },
   optimization: {
@@ -32,9 +27,13 @@ const config: Configuration = {
       type: 'commonjs2',
     },
   },
-  plugins: [...(baseConfig.plugins || []), webpackSsrManifestPlugin],
+  plugins: [
+    ...(baseConfig.plugins || []),
+    createManifestPlugin(true),
+    createProgressPlugin(true),
+  ],
   target: 'node',
   watch: !env.IS_PROD,
-};
+});
 
 export default config;

@@ -1,13 +1,16 @@
-import { Module } from 'webpack';
-import { type ManifestPluginOptions } from 'webpack-manifest-plugin';
+import { type Module } from '@rspack/core';
+import { type ManifestPluginOptions } from 'rspack-manifest-plugin';
 
 export const uniqArray = <T>(array: Array<T>) => [...new Set(array)];
 
 export const getFilenameJs = (name: string, isProduction: boolean) =>
   isProduction ? `public/js/${name}.[contenthash:8].js` : `public/js/[name].js`;
-export const getVendorName = ({ context }: Module) => {
+
+export const getVendorName = (module?: Module) => {
   // Source https://medium.com/hackernoon/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758
-  const matched = context?.match(/[/\\]node_modules[/\\](.*?)([/\\]|$)/);
+  const matched = module?.context?.match(
+    /[/\\]node_modules[/\\](.*?)([/\\]|$)/,
+  );
 
   return matched ? matched[1].replace('@', '') : 'other';
 };
