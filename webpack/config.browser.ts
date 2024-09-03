@@ -17,11 +17,11 @@ import { getFilenameJs, getVendorName } from './utils';
 
 const config: Configuration = {
   ...baseConfig,
-  // cache: {
-  //   cacheDirectory: env.CACHE_DIR,
-  //   name: `browser-${env.IS_PROD ? 'prod' : 'dev'}`,
-  //   type: 'filesystem',
-  // },
+  cache: {
+    cacheDirectory: env.CACHE_DIR,
+    name: `browser-${env.IS_PROD ? 'prod' : 'dev'}`,
+    type: 'filesystem',
+  },
   devServer: {
     client: {
       overlay: {

@@ -54,7 +54,7 @@
     "_build": "run-p _build:*",
     "_build:client": "run-p _build:client:*",
     "_build:client:browser": "rspack build -c rspack/config.browser.ts",
-    "_build:client:server": "rspack build -c rspack/config.server.ts",
+    "_build:client:ssr": "rspack build -c rspack/config.server.ts",
     "_build-wp": "run-p _build-wp:*",
     "_build-wp:client": "run-p _build-wp:client:*",
     "_build-wp:client:ssr": "webpack -c webpack/config.server.ts",

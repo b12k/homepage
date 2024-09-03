@@ -7,11 +7,11 @@ import { webpackSsrManifestPlugin } from './plugins';
 
 const config: Configuration = {
   ...baseConfig,
-  // cache: {
-  //   cacheDirectory: env.CACHE_DIR,
-  //   name: `server-${env.IS_PROD ? 'prod' : 'dev'}`,
-  //   type: 'filesystem',
-  // },
+  cache: {
+    cacheDirectory: env.CACHE_DIR,
+    name: `server-${env.IS_PROD ? 'prod' : 'dev'}`,
+    type: 'filesystem',
+  },
   devtool: false,
   entry: {
     index: './src/client/entry.server.ts',
