@@ -5,13 +5,13 @@
     src: string;
   }
 
-  const props = defineProps<BaseImageProps>();
+  const { alt, lazy, src } = defineProps<BaseImageProps>();
 </script>
 <template>
   <img
-    :alt="props.alt"
-    :loading="props.lazy ? 'lazy' : 'eager'"
-    :src="props.src"
+    :alt="alt"
+    :loading="lazy ? 'lazy' : 'eager'"
+    :src="src"
     class="base-image"
   />
 </template>

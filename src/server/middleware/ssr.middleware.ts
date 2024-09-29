@@ -3,7 +3,7 @@ import type { RequestHandler } from 'express';
 
 import { diff } from 'deep-object-diff';
 import nunjucks from 'nunjucks';
-import serialize from 'serialize-javascript';
+import stringify from 'safe-stable-stringify';
 
 import {
   type BuildContext,
@@ -136,7 +136,7 @@ export const ssrMiddleware: RequestHandler = async (
       head,
       html,
       manifest,
-      state: serialize(state),
+      state: stringify(state),
     });
 
     // section Response
@@ -204,6 +204,7 @@ export const ssrMiddleware: RequestHandler = async (
           isContextPatched: false,
         } as Context;
       }
+
       cacheService.setRender(renderCacheKey, JSON.stringify(renderResult));
     }
   } catch (error) {

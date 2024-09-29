@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import JsCookie from 'js-cookie';
-  import { nextTick, onMounted, ref } from 'vue';
+  import { nextTick, onMounted, onUnmounted, ref } from 'vue';
 
   import { wait } from '../../utils';
   import BaseChatBubble from './base-chat-bubble.vue';
@@ -32,17 +32,22 @@
     hideChatBubbleAndImage();
   };
 
+  const handleMouseMove = async () => {
+    canShowCookieConsent.value = true;
+    await nextTick();
+    await showImageAndChatBubble();
+    window.removeEventListener('mousemove', handleMouseMove);
+  };
+
   onMounted(async () => {
     isCookieConsentAccepted.value = JsCookie.get(consentCookieName) === 'true';
 
     if (isCookieConsentAccepted.value) return;
 
-    canShowCookieConsent.value = true;
-
-    await nextTick();
-
-    await showImageAndChatBubble();
+    window.addEventListener('mousemove', handleMouseMove);
   });
+
+  onUnmounted(() => window.removeEventListener('mousemove', handleMouseMove));
 </script>
 <template>
   <div
