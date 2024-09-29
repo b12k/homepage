@@ -59,7 +59,7 @@
       leave-active-class="animate__bounceOut"
     >
       <BaseChatBubble class="animate__animated" v-if="canShowChatBubble">
-        <h4>🍪 I love Cookies!</h4>
+        <h4>🍪 Cookies!</h4>
         <p>
           This website uses them.
           <br />

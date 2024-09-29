@@ -6,7 +6,7 @@
     }
   },
   "vueCompilerOptions": {
-    "target": 3.3
+    "target": 3.5
   },
   "compilerOptions": {
     "jsx": "preserve",
