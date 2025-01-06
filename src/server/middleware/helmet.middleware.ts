@@ -12,7 +12,12 @@ export const helmetMiddleware =
     const options: HelmetOptions = {
       contentSecurityPolicy: {
         directives: {
-          imgSrc: ["'self'", 'data:', 'https://via.placeholder.com'],
+          imgSrc: [
+            "'self'",
+            'data:',
+            'https://picsum.photos',
+            'https://fastly.picsum.photos',
+          ],
           scriptSrc: ["'self'", `'nonce-${requestId}'`, "'unsafe-eval'"],
         },
       },

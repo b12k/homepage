@@ -8,13 +8,13 @@
   function addAnimationClass() {
     animationClass.value = 'animate__animated animate__tada';
   }
+  function handleIconAnimationEnd() {
+    animationClass.value = undefined;
+  }
+
   function handleIconMouseOver() {
     if (animationClass.value) return;
     addAnimationClass();
-  }
-
-  function handleIconAnimationEnd() {
-    animationClass.value = undefined;
   }
 
   onMounted(() => {

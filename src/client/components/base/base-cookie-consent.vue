@@ -36,7 +36,7 @@
     canShowCookieConsent.value = true;
     await nextTick();
     await showImageAndChatBubble();
-    window.removeEventListener('mousemove', handleMouseMove);
+    globalThis.removeEventListener('mousemove', handleMouseMove);
   };
 
   onMounted(async () => {
@@ -44,10 +44,12 @@
 
     if (isCookieConsentAccepted.value) return;
 
-    window.addEventListener('mousemove', handleMouseMove);
+    globalThis.addEventListener('mousemove', handleMouseMove);
   });
 
-  onUnmounted(() => window.removeEventListener('mousemove', handleMouseMove));
+  onUnmounted(() =>
+    globalThis.removeEventListener('mousemove', handleMouseMove),
+  );
 </script>
 <template>
   <div

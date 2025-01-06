@@ -27,6 +27,7 @@ export default tsPlugin.config(
     rules: {
       'unicorn/no-array-for-each': 'off',
       'unicorn/no-array-reduce': 'off',
+      'unicorn/prefer-global-this': 'off',
       'unicorn/prefer-module': 'off',
       'unicorn/prefer-top-level-await': 'off',
       'unicorn/prevent-abbreviations': [

@@ -35,7 +35,7 @@ declare global {
     }
   });
 
-  window.addEventListener('error', (error) => {
+  globalThis.addEventListener('error', (error) => {
     logger.error(error);
   });
 })();

@@ -4,23 +4,23 @@ import { match } from 'path-to-regexp';
 import config from '../idempotency.config';
 import { type Context } from './context-builder.service';
 
-type FalsyValue = 0 | false | null | undefined;
-
-type ComputeKeyFunction = (
-  context: Context,
-  parameters: Record<string, string>,
-) => FalsyValue | string;
+export type IdempotencyConfig = {
+  afterCompute?: BeforeAfterComputeKeyFunction;
+  beforeCompute?: BeforeAfterComputeKeyFunction;
+  paths: Record<string, ComputeKeyFunction>;
+};
 
 type BeforeAfterComputeKeyFunction = (
   context: Context,
   parameters: Record<string, string>,
 ) => boolean | string;
 
-export type IdempotencyConfig = {
-  afterCompute?: BeforeAfterComputeKeyFunction;
-  beforeCompute?: BeforeAfterComputeKeyFunction;
-  paths: Record<string, ComputeKeyFunction>;
-};
+type ComputeKeyFunction = (
+  context: Context,
+  parameters: Record<string, string>,
+) => FalsyValue | string;
+
+type FalsyValue = 0 | false | null | undefined;
 
 const trimSlashes = (path: string) => path.replaceAll(/^\/|\/$/g, '');
 

@@ -1,8 +1,8 @@
 import type { Context } from '@server';
 
 import { renderSSRHead } from '@unhead/ssr';
-import { renderToString } from 'vue/server-renderer';
 import { createMemoryHistory } from 'vue-router';
+import { renderToString } from 'vue/server-renderer';
 
 import { createApp } from './create-app';
 import { execRoutePreFetch } from './router';

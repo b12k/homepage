@@ -17,6 +17,8 @@ interface CacheClientConfig {
   renderCacheTtl: number;
 }
 export class CacheService {
+  public cacheType!: 'L' | 'R';
+
   private cache!: CacheClient;
 
   private config!: CacheClientConfig;
@@ -26,16 +28,6 @@ export class CacheService {
   private isInitialized = false;
 
   private renderCache!: CacheClient;
-
-  public cacheType!: 'L' | 'R';
-
-  private saltCriticalCssKey(key: string) {
-    return ['[CRITICAL-CSS]', this.config.criticalCssCacheSalt, key].join(':');
-  }
-
-  private saltRenderKey(key: string) {
-    return ['[RENDER]', this.config.renderCacheSalt, key].join(':');
-  }
 
   async getCriticalCss(key: string, isSlidingCache = false) {
     if (!this.isInitialized) return;
@@ -102,6 +94,14 @@ export class CacheService {
     const saltedKey = this.saltRenderKey(key);
 
     return this.renderCache.set(saltedKey, value, this.config.renderCacheTtl);
+  }
+
+  private saltCriticalCssKey(key: string) {
+    return ['[CRITICAL-CSS]', this.config.criticalCssCacheSalt, key].join(':');
+  }
+
+  private saltRenderKey(key: string) {
+    return ['[RENDER]', this.config.renderCacheSalt, key].join(':');
   }
 }
 

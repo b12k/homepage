@@ -7,7 +7,7 @@ declare module 'vue-router' {
   }
 }
 
-type RouteRecordRawNamed = { name: string } & RouteRecordRaw;
+type RouteRecordRawNamed = RouteRecordRaw & { name: string };
 
 export const routes: Array<RouteRecordRawNamed> = [
   {

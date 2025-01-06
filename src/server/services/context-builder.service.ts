@@ -1,5 +1,5 @@
 import { type Request } from 'express';
-import UaParser from 'ua-parser-js';
+import { UAParser } from 'ua-parser-js';
 
 import { env as _env, type Env } from '../env';
 import { createRequestPropertyExtractor, overrideEnv } from '../utils';
@@ -40,15 +40,15 @@ export const buildContext = (request: Request) => {
   }
   const {
     device: { type: detectedDeviceType },
-  } = new UaParser(request.headers['user-agent']).getResult();
+  } = new UAParser(request.headers['user-agent']).getResult();
 
   const device: Device = {
     type: 'mobile',
   };
 
   switch (detectedDeviceType) {
-    case 'tablet':
-    case 'mobile': {
+    case 'mobile':
+    case 'tablet': {
       device.type = detectedDeviceType;
       break;
     }
@@ -78,4 +78,4 @@ export const buildContext = (request: Request) => {
 };
 
 export type BuildContext = ReturnType<typeof buildContext>;
-export type Context = { cached?: Partial<BuildContext> } & BuildContext;
+export type Context = BuildContext & { cached?: Partial<BuildContext> };

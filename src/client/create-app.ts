@@ -9,7 +9,7 @@ import App from './app.vue';
 import { routes } from './router';
 import { logger } from './services';
 
-export type InitialState = { context: Context } & StateTree;
+export type InitialState = StateTree & { context: Context };
 
 export const createApp = async (
   history: RouterHistory,

@@ -16,12 +16,12 @@ export interface AssetsManifest {
   };
 }
 
+type ImportedModule<T> = { default: T };
+
 interface SsrAssets {
   manifest: AssetsManifest;
   render: Render;
 }
-
-type ImportedModule<T> = { default: T };
 
 type SsrAssetsLoader = () => Promise<SsrAssets>;
 

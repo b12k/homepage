@@ -1,1 +1,1 @@
-pnpm _git:pre-commit
+pnpm qc
