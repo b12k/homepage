@@ -40,6 +40,8 @@ export default tsPlugin.config(
             env: true,
             props: true,
             Props: true,
+            utils: true,
+            Utils: true,
           },
         },
       ],

@@ -1,3 +1,5 @@
+import type { ExperimentCacheOptions } from '@rspack/core';
+
 import { defineConfig } from '@rspack/cli';
 
 import baseConfig from './config.base';
@@ -11,12 +13,21 @@ import {
 } from './plugins';
 import { getFilenameJs, getVendorName } from './utils';
 
+const cache = {
+  storage: {
+    directory: `.temp/rspack/browser/${env.IS_PROD ? 'prod' : 'dev'}`,
+    type: 'filesystem',
+  },
+  type: 'persistent',
+} as ExperimentCacheOptions;
+
 const config = defineConfig({
   ...baseConfig,
   entry: {
     app: './src/client/entry.browser.ts',
   },
   experiments: {
+    cache,
     css: false,
   },
   module: {
