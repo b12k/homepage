@@ -7,7 +7,7 @@ import tsPlugin from 'typescript-eslint';
 
 export default tsPlugin.config(
   {
-    ignores: ['dist/'],
+    ignores: ['dist', '.temp', 'node_modules'],
   },
   jsPlugin.configs.recommended,
   ...tsPlugin.configs.recommended,

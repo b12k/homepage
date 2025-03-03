@@ -7,3 +7,16 @@ services:
     command: redis-server --requirepass ${REDIS_PASSWORD}
     volumes:
       - .temp/redis:/data
+
+  pocketbase:
+    image: elestio/pocketbase:latest
+    restart: always
+    ports:
+      - '8090:8090'
+    volumes:
+      - ./.temp/pb/data:/pb_data
+      - ./.temp/pb/public:/pb_public
+      - ./.temp/pb/migrations:/pb_migrations
+    environment:
+      - EMAIL=flashbogdan@gmail.com
+      - ADMIN_PASSWORD=banana

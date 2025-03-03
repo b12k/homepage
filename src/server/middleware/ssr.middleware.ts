@@ -1,4 +1,4 @@
-import type { Logger, RenderResult } from '@client';
+import type { RenderResult } from '@client';
 import type { RequestHandler } from 'express';
 
 import { diff } from 'deep-object-diff';
@@ -82,10 +82,7 @@ export const ssrMiddleware: RequestHandler = async (
      */
 
     if (!renderResult) {
-      renderResult = await render(
-        { ...context },
-        request.log as unknown as Logger,
-      );
+      renderResult = await render({ ...context }, request.log);
     }
 
     if (!renderResult) {

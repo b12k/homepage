@@ -1,4 +1,5 @@
 import type { Context } from '@server';
+import type { Logger } from 'pino';
 
 import { createHead } from '@unhead/vue';
 import { createPinia, type StateTree } from 'pinia';
@@ -7,28 +8,32 @@ import { createRouter, type RouterHistory } from 'vue-router';
 
 import App from './app.vue';
 import { routes } from './router';
-import { logger } from './services';
+import { createServices, createServicesPiniaPlugin } from './services';
 
 export type InitialState = StateTree & { context: Context };
 
 export const createApp = async (
   history: RouterHistory,
   initialState: InitialState,
+  logger: Logger,
 ) => {
   const app = createSSRApp(App);
   const head = createHead();
   const store = createPinia();
+  const services = createServices(initialState.context, logger);
   const router = createRouter({
     history,
     routes,
   });
+
+  store.use(createServicesPiniaPlugin(services));
 
   app.use(router).use(store).use(head);
 
   store.state.value = initialState;
 
   app.config.errorHandler = (error, instance, info) => {
-    logger.error(error, info, [instance]);
+    services.logger.error(error, info, [instance]);
   };
 
   await router.push(initialState.context.url);
@@ -38,6 +43,7 @@ export const createApp = async (
     app,
     head,
     router,
+    services,
     store,
   };
 };
