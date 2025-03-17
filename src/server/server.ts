@@ -1,7 +1,7 @@
 import compression from '@nitedani/shrink-ray-current';
 import cookieParser from 'cookie-parser';
 import express, { static as serveStatic } from 'express';
-import nunjucks from 'nunjucks';
+import { configure as nunjucksConfigure } from 'nunjucks';
 import serveFavicon from 'serve-favicon';
 
 import { env } from './env';
@@ -27,12 +27,10 @@ export const startServer = async () => {
 
   const app = express();
 
-  nunjucks
-    .configure(env.VIEWS_PATH, {
-      autoescape: true,
-      express: app,
-    })
-    .addGlobal('env', env);
+  nunjucksConfigure(env.VIEWS_PATH, {
+    autoescape: true,
+    express: app,
+  }).addGlobal('env', env);
 
   app
     .set('view engine', 'njk')

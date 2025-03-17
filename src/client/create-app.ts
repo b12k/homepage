@@ -8,7 +8,11 @@ import { createRouter, type RouterHistory } from 'vue-router';
 
 import App from './app.vue';
 import { routes } from './router';
-import { createServices, createServicesPiniaPlugin } from './services';
+import {
+  createServices,
+  createServicesPiniaPlugin,
+  createServicesVuePlugin,
+} from './services';
 
 export type InitialState = StateTree & { context: Context };
 
@@ -28,7 +32,7 @@ export const createApp = async (
 
   store.use(createServicesPiniaPlugin(services));
 
-  app.use(router).use(store).use(head);
+  app.use(createServicesVuePlugin(services)).use(router).use(store).use(head);
 
   store.state.value = initialState;
 

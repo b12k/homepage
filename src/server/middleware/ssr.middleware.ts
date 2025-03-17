@@ -2,7 +2,7 @@ import type { RenderResult } from '@client';
 import type { RequestHandler } from 'express';
 
 import { diff } from 'deep-object-diff';
-import nunjucks from 'nunjucks';
+import { render as nunjuksRender } from 'nunjucks';
 import stringify from 'safe-stable-stringify';
 
 import {
@@ -127,7 +127,7 @@ export const ssrMiddleware: RequestHandler = async (
      *                     |_|
      */
 
-    const page = nunjucks.render('index.njk', {
+    const page = nunjuksRender('index.njk', {
       context,
       criticalCss,
       head,

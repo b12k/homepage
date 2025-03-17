@@ -1,4 +1,4 @@
-import rspack from '@rspack/core';
+import { CssExtractRspackPlugin } from '@rspack/core';
 
 import env from './env';
 
@@ -36,7 +36,7 @@ export const scssLoader = {
   test: /\.s?css$/,
   type: 'javascript/auto',
   use: [
-    env.IS_PROD ? rspack.CssExtractRspackPlugin.loader : 'vue-style-loader',
+    env.IS_PROD ? CssExtractRspackPlugin.loader : 'vue-style-loader',
     { loader: 'css-loader', options: { sourceMap: env.IS_PROD } },
     { loader: 'postcss-loader', options: { sourceMap: env.IS_PROD } },
     { loader: 'sass-loader', options: { sourceMap: env.IS_PROD } },

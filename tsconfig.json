@@ -28,6 +28,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
+      "~/*": ["./src/*"],
       "@client": ["./src/client"],
       "@components": ["./src/client/components"],
       "@server": ["./src/server"]

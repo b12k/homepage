@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 
 import { randomUUID } from 'node:crypto';
-import pinoHttp from 'pino-http';
+import { pinoHttp } from 'pino-http';
 import pinoPretty from 'pino-pretty';
 
 import { env } from '../env';

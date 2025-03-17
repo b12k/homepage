@@ -1,6 +1,6 @@
 import '@popperjs/core';
 import 'bootstrap';
-import pino from 'pino';
+import { pino } from 'pino';
 import { createWebHistory } from 'vue-router';
 
 import { createApp, type InitialState } from './create-app';
