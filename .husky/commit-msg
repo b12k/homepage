@@ -1,1 +1,1 @@
-pnpm _git:commit-msg --edit $1
+pnpm husky:commit-msg --edit $1

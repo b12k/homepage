@@ -1,1 +1,1 @@
-pnpm _git:pre-push
+pnpm husky:pre-push

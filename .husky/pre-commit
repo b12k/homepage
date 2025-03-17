@@ -1,1 +1,1 @@
-pnpm qc
+pnpm husky:pre-commit
