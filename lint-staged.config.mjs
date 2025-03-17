@@ -12,11 +12,9 @@ const stylelint = 'pnpm _stylelint --fix';
 const sortPackageJson = 'pnpm _sort-package-json';
 
 export default {
-  [`${SCRIPTS}|CODE`]: eslint,
-  [`${SCRIPTS}|TYPES`]: tsc,
-  [`${VUE}|CODE`]: eslint,
+  [`${SCRIPTS}|${VUE}|SCRIPTS`]: eslint,
+  [`${SCRIPTS}|${VUE}|TYPES`]: tsc,
   [`${VUE}|STYLES`]: stylelint,
-  [`${VUE}|TYPES`]: tsc,
   [OTHER]: prettier,
   [PACKAGE_JSON]: [sortPackageJson, prettier],
   [STYLES]: [stylelint, prettier],
