@@ -1,10 +1,10 @@
-import { RsdoctorRspackPlugin } from '@rsdoctor/rspack-plugin';
 import {
   CssExtractRspackPlugin,
   DefinePlugin,
   ProgressPlugin,
   SwcJsMinimizerRspackPlugin,
 } from '@rspack/core';
+import { BundleStatsWebpackPlugin } from 'bundle-stats-webpack-plugin';
 import { RspackManifestPlugin } from 'rspack-manifest-plugin';
 import { VueLoaderPlugin } from 'vue-loader';
 
@@ -39,4 +39,4 @@ export const createProgressPlugin = (isSSR = false) =>
     prefix: isSSR ? '[[[ Compile for SSR ]]]' : '[[[ Compile for Browser ]]]',
   });
 
-export const rsdoctorRspackPlugin = new RsdoctorRspackPlugin();
+export const bundleStatsWebpackPlugin = new BundleStatsWebpackPlugin();

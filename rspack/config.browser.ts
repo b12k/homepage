@@ -6,10 +6,10 @@ import baseConfig from './config.base';
 import env from './env';
 import { createImageLoader, scssLoader } from './loaders';
 import {
+  bundleStatsWebpackPlugin,
   createManifestPlugin,
   createProgressPlugin,
   cssExtractRspackPlugin,
-  rsdoctorRspackPlugin,
   swcJsMinimizerRspackPlugin,
 } from './plugins';
 import { getFilenameJs, getVendorName } from './utils';
@@ -52,7 +52,7 @@ const config = defineConfig({
 });
 
 if (env.WITH_STATS) {
-  config.plugins = [...(config.plugins || []), rsdoctorRspackPlugin];
+  config.plugins = [...(config.plugins || []), bundleStatsWebpackPlugin];
 }
 
 if (env.IS_PROD) {

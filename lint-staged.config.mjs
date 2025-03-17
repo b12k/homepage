@@ -13,7 +13,7 @@ const sortPackageJson = 'pnpm _sort-package-json';
 export default {
   [`${SCRIPTS}|CODE`]: eslint,
   [`${SCRIPTS}|TYPES`]: tsc,
-  [`${VUE}|CODE`]: [eslint, prettier],
+  [`${VUE}|CODE`]: eslint,
   [`${VUE}|STYLES`]: stylelint,
   [`${VUE}|TYPES`]: tsc,
   [OTHER]: prettier,
