@@ -1,3 +1,4 @@
+import { RsdoctorRspackPlugin } from '@rsdoctor/rspack-plugin';
 import {
   CssExtractRspackPlugin,
   DefinePlugin,
@@ -37,3 +38,5 @@ export const createProgressPlugin = (isSSR = false) =>
   new ProgressPlugin({
     prefix: isSSR ? '[[[ Compile for SSR ]]]' : '[[[ Compile for Browser ]]]',
   });
+
+export const rsdoctorRspackPlugin = new RsdoctorRspackPlugin();

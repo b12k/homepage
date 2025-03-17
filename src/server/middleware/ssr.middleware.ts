@@ -3,7 +3,7 @@ import type { RequestHandler } from 'express';
 
 import { diff } from 'deep-object-diff';
 import { render as nunjuksRender } from 'nunjucks';
-import stringify from 'safe-stable-stringify';
+import { stringify } from 'safe-stable-stringify';
 
 import {
   type BuildContext,

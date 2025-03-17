@@ -9,6 +9,7 @@ import {
   createManifestPlugin,
   createProgressPlugin,
   cssExtractRspackPlugin,
+  rsdoctorRspackPlugin,
   swcJsMinimizerRspackPlugin,
 } from './plugins';
 import { getFilenameJs, getVendorName } from './utils';
@@ -49,6 +50,10 @@ const config = defineConfig({
     createProgressPlugin(),
   ],
 });
+
+if (env.WITH_STATS) {
+  config.plugins = [...(config.plugins || []), rsdoctorRspackPlugin];
+}
 
 if (env.IS_PROD) {
   config.plugins = [
