@@ -2,6 +2,7 @@ const STYLES = '*.s?css';
 const SCRIPTS = '*.[mc]?[jt]sx?';
 const VUE = '*.vue';
 const PACKAGE_JSON = 'package.json';
+// const NUNJUCKS = '*.njk';
 const OTHER = `!(${[SCRIPTS, STYLES, PACKAGE_JSON, VUE].join('|')})`;
 
 const tsc = 'pnpm _tsc';

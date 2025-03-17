@@ -185,6 +185,9 @@ importers:
       css-loader:
         specifier: 7.1.2
         version: 7.1.2(@rspack/core@1.2.8(@swc/helpers@0.5.15))(webpack@5.94.0(@swc/core@1.11.10(@swc/helpers@0.5.15))(esbuild@0.25.1))
+      djlint:
+        specifier: 1.36.4
+        version: 1.36.4
       eslint:
         specifier: 9.22.0
         version: 9.22.0(jiti@2.4.2)
@@ -245,6 +248,9 @@ importers:
       prettier:
         specifier: 3.5.3
         version: 3.5.3
+      prettier-plugin-jinja-template:
+        specifier: 2.0.0
+        version: 2.0.0(prettier@3.5.3)
       rspack-manifest-plugin:
         specifier: 5.0.3
         version: 5.0.3(@rspack/core@1.2.8(@swc/helpers@0.5.15))
@@ -4003,6 +4009,12 @@ packages:
       }
     engines: { node: '>=8' }
 
+  djlint@1.36.4:
+    resolution:
+      {
+        integrity: sha512-ZKBu3ayt6BQHVts+0NCxcsHxn5drmV8/V3O7W8/RjrhFmoFn7P5eAb37sSIIFhQe2kNK7Q0YgMPRARSR4sUW6w==,
+      }
+
   dns-packet@5.6.1:
     resolution:
       {
@@ -7660,6 +7672,14 @@ packages:
         integrity: sha512-GbK2cP9nraSSUF9N2XwUwqfzlAFlMNYYl+ShE/V+H8a9uNl/oUqB1w2EL54Jh0OlyRSd8RfWYJ3coVS4TROP2w==,
       }
     engines: { node: '>=6.0.0' }
+
+  prettier-plugin-jinja-template@2.0.0:
+    resolution:
+      {
+        integrity: sha512-REZDAcZuOUvMDaPS47/GNRLKvbxh9DO9euXhWA7gJGqTLGzHPK2Z841F8I4bxsR7e2lqnHezkQ8GcWaKekKBVQ==,
+      }
+    peerDependencies:
+      prettier: ^3.0.0
 
   prettier@3.5.3:
     resolution:
@@ -12290,6 +12310,8 @@ snapshots:
     dependencies:
       path-type: 4.0.0
 
+  djlint@1.36.4: {}
+
   dns-packet@5.6.1:
     dependencies:
       '@leichtgewicht/ip-codec': 2.0.4
@@ -14555,6 +14577,10 @@ snapshots:
   prettier-linter-helpers@1.0.0:
     dependencies:
       fast-diff: 1.3.0
+
+  prettier-plugin-jinja-template@2.0.0(prettier@3.5.3):
+    dependencies:
+      prettier: 3.5.3
 
   prettier@3.5.3: {}
 
