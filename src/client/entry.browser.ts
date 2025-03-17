@@ -17,7 +17,7 @@ declare global {
 (async () => {
   const initialState = deserialize<InitialState>(window.INITIAL_STATE);
   const history = createWebHistory(initialState.context.baseUrl);
-  const logger = pino();
+  const logger = pino({ browser: { asObject: true } });
   const { app, router, services } = await createApp(
     history,
     initialState,

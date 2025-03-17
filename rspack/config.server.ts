@@ -17,7 +17,6 @@ const cache = {
 
 const config = defineConfig({
   ...baseConfig,
-  devtool: false,
   entry: {
     index: './src/client/entry.server.ts',
   },

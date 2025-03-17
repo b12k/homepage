@@ -50,7 +50,6 @@ const paddedPlaceholderLines = addPaddings(placeholderLines);
 export const useCharMatrixStore = defineStore('charMatrix', {
   actions: {
     reBuildRowsOfChars() {
-      console.log(this.services.logger.info('reBuildRowsOfChars()'));
       this.rowsOfChars = buildRowsOfChars(paddedTextLines);
       this.placeholderRowsOfChars = buildRowsOfChars(paddedPlaceholderLines);
     },

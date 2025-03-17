@@ -8,18 +8,18 @@ export type Services = ReturnType<typeof createServices>;
 export function createServices(context: Context, logger: Logger) {
   return {
     api: createApi(context),
-    logger,
+    logger: logger,
   };
 }
 
 export function createServicesPiniaPlugin(services: Services) {
   return () => ({
-    services,
+    $services: services,
   });
 }
 
 declare module 'pinia' {
   export interface PiniaCustomProperties {
-    services: Services;
+    $services: Services;
   }
 }
