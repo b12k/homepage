@@ -5,7 +5,7 @@ const PACKAGE_JSON = 'package.json';
 // const NUNJUCKS = '*.njk';
 const OTHER = `!(${[SCRIPTS, STYLES, PACKAGE_JSON, VUE].join('|')})`;
 
-const tsc = 'pnpm _tsc';
+const tsc = () => 'pnpm _tsc';
 const eslint = 'pnpm _eslint --fix';
 const prettier = 'pnpm _prettier -w';
 const stylelint = 'pnpm _stylelint --fix';

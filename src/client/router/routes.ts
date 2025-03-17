@@ -54,7 +54,7 @@ export const routes: Array<RouteRecordRawNamed> = [
       responseCode: 404,
     },
     name: 'not-found',
-    path: '/404/:notFoundPath?',
+    path: '/404',
   },
   {
     name: 'catch-not-found',

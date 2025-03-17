@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS",
@@ -14,6 +15,7 @@
     "module": "ESNext",
     "strict": true,
     "target": "ESNext",
+    "allowJs": true,
     "skipLibCheck": true,
     "importHelpers": true,
     "esModuleInterop": true,
@@ -28,12 +30,10 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"],
       "@client": ["./src/client"],
-      "@components": ["./src/client/components"],
       "@server": ["./src/server"]
     }
   },
-  "include": ["**/*.ts", "**/*.vue"],
-  "exclude": ["node_modules"]
+  "include": ["**/*.ts", "**/*.js", "**/*.vue"],
+  "exclude": ["node_modules", "dist", ".temp"]
 }

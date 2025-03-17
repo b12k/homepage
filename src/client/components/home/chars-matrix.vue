@@ -74,7 +74,7 @@
 </template>
 <style lang="scss">
   .chars-matrix {
-    background-color: #da291c;
+    background-color: oklch(50.5% 0.213 27.518deg);
     min-height: 100svh;
     font-size: 3vh;
     opacity: 1;
@@ -83,10 +83,14 @@
       font-size: 8vh;
     }
 
+    &-char:not(.text-white) {
+      opacity: 0.75;
+      transition: opacity 0.3s;
+    }
+
     &-char:hover {
       opacity: 0.25;
       cursor: default;
-      transition: opacity 0.3s;
     }
   }
 </style>

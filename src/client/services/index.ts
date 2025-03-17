@@ -9,7 +9,7 @@ export type Services = ReturnType<typeof createServices>;
 export function createServices(_: Context, logger: Logger) {
   return {
     api: createApi(),
-    logger: logger,
+    logger,
   };
 }
 
