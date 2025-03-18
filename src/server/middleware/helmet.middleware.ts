@@ -18,7 +18,12 @@ export const helmetMiddleware =
             'https://picsum.photos',
             'https://fastly.picsum.photos',
           ],
-          scriptSrc: ["'self'", `'nonce-${requestId}'`, "'unsafe-eval'"],
+          scriptSrc: [
+            "'self'",
+            `'nonce-${requestId}'`,
+            "'unsafe-eval'",
+            'https://cloud.umami.is',
+          ],
         },
       },
     };
