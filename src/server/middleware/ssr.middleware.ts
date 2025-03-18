@@ -1,9 +1,9 @@
-import type { Logger, RenderResult } from '@client';
+import type { RenderResult } from '@client';
 import type { RequestHandler } from 'express';
 
 import { diff } from 'deep-object-diff';
-import nunjucks from 'nunjucks';
-import stringify from 'safe-stable-stringify';
+import { render as nunjuksRender } from 'nunjucks';
+import { stringify } from 'safe-stable-stringify';
 
 import {
   type BuildContext,
@@ -82,10 +82,7 @@ export const ssrMiddleware: RequestHandler = async (
      */
 
     if (!renderResult) {
-      renderResult = await render(
-        { ...context },
-        request.log as unknown as Logger,
-      );
+      renderResult = await render({ ...context }, request.log);
     }
 
     if (!renderResult) {
@@ -130,7 +127,7 @@ export const ssrMiddleware: RequestHandler = async (
      *                     |_|
      */
 
-    const page = nunjucks.render('index.njk', {
+    const page = nunjuksRender('index.njk', {
       context,
       criticalCss,
       head,

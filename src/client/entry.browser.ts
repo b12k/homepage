@@ -1,11 +1,11 @@
 import '@popperjs/core';
 import 'bootstrap';
+import { pino } from 'pino';
 import { createWebHistory } from 'vue-router';
 
 import { createApp, type InitialState } from './create-app';
-import { execRoutePreFetch } from './router';
-import { logger } from './services';
 import './styles/main.scss';
+import { execRoutePreFetch } from './router';
 import { deserialize } from './utils';
 
 declare global {
@@ -17,8 +17,12 @@ declare global {
 (async () => {
   const initialState = deserialize<InitialState>(window.INITIAL_STATE);
   const history = createWebHistory(initialState.context.baseUrl);
-  // const history = createWebHistory('/');
-  const { app, router } = await createApp(history, initialState);
+  const logger = pino({ browser: { asObject: true } });
+  const { app, router, services } = await createApp(
+    history,
+    initialState,
+    logger,
+  );
 
   app.mount('#app');
 
@@ -36,6 +40,6 @@ declare global {
   });
 
   globalThis.addEventListener('error', (error) => {
-    logger.error(error);
+    services.logger.error(error);
   });
 })();

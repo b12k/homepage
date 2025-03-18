@@ -1,7 +1,7 @@
 import type { AxiosError } from 'axios';
 
 import { type ErrorRequestHandler } from 'express';
-import stringify from 'safe-stable-stringify';
+import { stringify } from 'safe-stable-stringify';
 
 import { env } from '../env';
 import { getContext } from './context.middleware';

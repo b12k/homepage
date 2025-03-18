@@ -1,23 +1,34 @@
 import jsPlugin from '@eslint/js';
+import importPlugin from 'eslint-plugin-import-x';
 import perfectionistPlugin from 'eslint-plugin-perfectionist';
 import prettierPlugin from 'eslint-plugin-prettier/recommended';
 import unicornPlugin from 'eslint-plugin-unicorn';
 import vuePlugin from 'eslint-plugin-vue';
-import tsPlugin from 'typescript-eslint';
+import globals from 'globals';
+import {
+  config as createTsConfig,
+  configs as tsConfigs,
+} from 'typescript-eslint';
 
-export default tsPlugin.config(
+export default createTsConfig(
   {
-    ignores: ['dist/'],
+    ignores: ['dist', '.temp', 'node_modules'],
   },
   jsPlugin.configs.recommended,
-  ...tsPlugin.configs.recommended,
+  ...tsConfigs.recommended,
   ...vuePlugin.configs['flat/strongly-recommended'],
-  unicornPlugin.configs['flat/all'],
+  unicornPlugin.configs.all,
+  importPlugin.flatConfigs.recommended,
+  importPlugin.flatConfigs.typescript,
   perfectionistPlugin.configs['recommended-natural'],
   prettierPlugin,
   {
     files: ['*.vue', '**/*.vue'],
     languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
       parserOptions: {
         parser: '@typescript-eslint/parser',
       },
@@ -25,6 +36,12 @@ export default tsPlugin.config(
   },
   {
     rules: {
+      'import-x/no-extraneous-dependencies': [
+        'error',
+        {
+          devDependencies: ['!**/src/**/*'],
+        },
+      ],
       'unicorn/no-array-for-each': 'off',
       'unicorn/no-array-reduce': 'off',
       'unicorn/prefer-global-this': 'off',

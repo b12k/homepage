@@ -6,6 +6,7 @@ import baseConfig from './config.base';
 import env from './env';
 import { createImageLoader, scssLoader } from './loaders';
 import {
+  bundleStatsWebpackPlugin,
   createManifestPlugin,
   createProgressPlugin,
   cssExtractRspackPlugin,
@@ -49,6 +50,10 @@ const config = defineConfig({
     createProgressPlugin(),
   ],
 });
+
+if (env.WITH_STATS) {
+  config.plugins = [...(config.plugins || []), bundleStatsWebpackPlugin];
+}
 
 if (env.IS_PROD) {
   config.plugins = [

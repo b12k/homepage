@@ -1,4 +1,10 @@
-import rspack from '@rspack/core';
+import {
+  CssExtractRspackPlugin,
+  DefinePlugin,
+  ProgressPlugin,
+  SwcJsMinimizerRspackPlugin,
+} from '@rspack/core';
+import { BundleStatsWebpackPlugin } from 'bundle-stats-webpack-plugin';
 import { RspackManifestPlugin } from 'rspack-manifest-plugin';
 import { VueLoaderPlugin } from 'vue-loader';
 
@@ -6,13 +12,13 @@ import { generateManifest } from './utils';
 
 export const vuePlugin = new VueLoaderPlugin();
 
-export const definePlugin = new rspack.DefinePlugin({
+export const definePlugin = new DefinePlugin({
   __VUE_OPTIONS_API__: true,
   __VUE_PROD_DEVTOOLS__: true,
   __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: true,
 });
 
-export const cssExtractRspackPlugin = new rspack.CssExtractRspackPlugin({
+export const cssExtractRspackPlugin = new CssExtractRspackPlugin({
   chunkFilename: 'public/css/chunk.[contenthash:8].css',
   filename: 'public/css/[name].[contenthash:8].css',
 });
@@ -24,13 +30,13 @@ export const createManifestPlugin = (isSSR = false) =>
     useEntryKeys: isSSR,
   });
 
-export const swcJsMinimizerRspackPlugin = new rspack.SwcJsMinimizerRspackPlugin(
-  {
-    extractComments: false,
-  },
-);
+export const swcJsMinimizerRspackPlugin = new SwcJsMinimizerRspackPlugin({
+  extractComments: false,
+});
 
 export const createProgressPlugin = (isSSR = false) =>
-  new rspack.ProgressPlugin({
+  new ProgressPlugin({
     prefix: isSSR ? '[[[ Compile for SSR ]]]' : '[[[ Compile for Browser ]]]',
   });
+
+export const bundleStatsWebpackPlugin = new BundleStatsWebpackPlugin();
