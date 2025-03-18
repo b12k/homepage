@@ -12,7 +12,11 @@ export const helmetMiddleware =
     const options: HelmetOptions = {
       contentSecurityPolicy: {
         directives: {
-          connectSrc: ["'self'", 'https://api-gateway.umami.is'],
+          connectSrc: [
+            "'self'",
+            'https://cloud.umami.is',
+            'https://api-gateway.umami.is',
+          ],
           imgSrc: [
             "'self'",
             'data:',
