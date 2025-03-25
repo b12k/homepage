@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { match } from 'path-to-regexp';
 
-import config from '../idempotency.config';
+import { config } from '../idempotency.config';
 import { type Context } from './context-builder.service';
 
 export type IdempotencyConfig = {

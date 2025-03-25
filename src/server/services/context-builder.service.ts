@@ -1,7 +1,7 @@
 import { type Request } from 'express';
 import { UAParser } from 'ua-parser-js';
 
-import { env as _env, type Env } from '../env';
+import { env, type Env } from '../env';
 import { createRequestPropertyExtractor, overrideEnv } from '../utils';
 
 interface Device {
@@ -10,32 +10,32 @@ interface Device {
 
 export const buildContext = (request: Request) => {
   const getRequestProperty = createRequestPropertyExtractor(request);
-  const enableDebugProperty = getRequestProperty('ENABLE_DEBUG');
+  const debugModePassword = getRequestProperty('DEBUG_MODE_PASSWORD');
   const envOverridesProperty = getRequestProperty('ENV_OVERRIDES');
   const isCacheEnabled =
-    _env.CACHE === 'true' && getRequestProperty('CACHE') !== 'false';
+    env.IS_CACHE_ENABLED && getRequestProperty('IS_CACHE_ENABLED') !== 'false';
   const isRenderCacheEnabled =
     isCacheEnabled &&
-    _env.RENDER_CACHE === 'true' &&
-    getRequestProperty('RENDER_CACHE') !== 'false';
+    env.IS_RENDER_CACHE_ENABLED &&
+    getRequestProperty('IS_RENDER_CACHE_ENABLED') !== 'false';
   const isCriticalCssCacheEnabled =
     isCacheEnabled &&
-    _env.CRITICAL_CSS_CACHE === 'true' &&
-    getRequestProperty('CRITICAL_CSS_CACHE') !== 'false';
+    env.IS_CRITICAL_CSS_CACHE_ENABLED &&
+    getRequestProperty('IS_CRITICAL_CSS_CACHE_ENABLED') !== 'false';
   const shouldRefreshRenderCache =
     getRequestProperty('REFRESH_RENDER_CACHE') === 'true';
   const shouldRefreshCriticalCssCache =
     getRequestProperty('REFRESH_CRITICAL_CSS_CACHE') === 'true';
   const isDebug =
-    _env.DEBUG === 'true' || _env.ENABLE_DEBUG === enableDebugProperty;
+    env.IS_DEBUG_MODE || env.DEBUG_MODE_PASSWORD === debugModePassword;
 
-  let env: Env = _env;
+  let maybeOverridenEnv: Env = env;
   if (isDebug && envOverridesProperty) {
     try {
       const envOverrides = JSON.parse(envOverridesProperty) as Partial<Env>;
-      env = overrideEnv(env, envOverrides);
+      maybeOverridenEnv = overrideEnv(env, envOverrides);
     } catch {
-      env.IS_OVERRIDDEN = 'false';
+      maybeOverridenEnv.IS_OVERRIDDEN = 'false';
     }
   }
   const {
@@ -64,7 +64,7 @@ export const buildContext = (request: Request) => {
     isContextPatched: false,
     isCriticalCssCacheEnabled,
     isDebug,
-    isEnvOverridden: env.IS_OVERRIDDEN === 'true',
+    isEnvOverridden: maybeOverridenEnv.IS_OVERRIDDEN === 'true',
     isProd: env.NODE_ENV !== 'development',
     isRenderCacheEnabled,
     lang: request.params.lang,

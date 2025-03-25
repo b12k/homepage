@@ -1,7 +1,9 @@
-.git
-.idea
-.temp
-.vscode
+**
 
-node_modules
-dist
+!rspack
+!src
+!.postcssrc
+!*.swcrc
+!package.json
+!pnpm-lock.yaml
+!tsconfig.json

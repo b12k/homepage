@@ -4,6 +4,7 @@ import perfectionistPlugin from 'eslint-plugin-perfectionist';
 import prettierPlugin from 'eslint-plugin-prettier/recommended';
 import unicornPlugin from 'eslint-plugin-unicorn';
 import vuePlugin from 'eslint-plugin-vue';
+import { globalIgnores } from 'eslint/config';
 import globals from 'globals';
 import {
   config as createTsConfig,
@@ -11,8 +12,14 @@ import {
 } from 'typescript-eslint';
 
 export default createTsConfig(
+  globalIgnores(['node_modules', 'dist', '.temp']),
   {
-    ignores: ['dist', '.temp', 'node_modules'],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+    },
   },
   jsPlugin.configs.recommended,
   ...tsConfigs.recommended,
@@ -25,10 +32,6 @@ export default createTsConfig(
   {
     files: ['*.vue', '**/*.vue'],
     languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
       parserOptions: {
         parser: '@typescript-eslint/parser',
       },
@@ -55,6 +58,7 @@ export default createTsConfig(
             dir: true,
             Env: true,
             env: true,
+            num: true,
             props: true,
             Props: true,
             utils: true,

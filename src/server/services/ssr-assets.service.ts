@@ -37,7 +37,7 @@ export const loadSsrAssets: SsrAssetsLoader = async () => {
       ImportedModule<Render>,
     ];
 
-  if (env.IS_PROD !== 'true') {
+  if (env.IS_PROD) {
     decache(env.CLIENT_MANIFEST_PATH);
     decache(env.SSR_RENDERER_PATH);
     Object.values(ssrManifest).forEach((entry) =>

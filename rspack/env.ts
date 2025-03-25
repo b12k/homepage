@@ -1,7 +1,7 @@
 import path from 'node:path';
 
 const IS_PROD = process.env.NODE_ENV !== 'development';
-const WDS_PORT = Number(process.env.WDS_PORT) || 8081;
+const WDS_PORT = Number(process.env.WDS_PORT) || Number(process.env.PORT) + 1;
 const ICONS_FOLDER_PATH = path.resolve(__dirname, '../src/client/assets/icons');
 const CONTEXT = path.resolve(__dirname, '..');
 const OUTPUT_PATH = path.resolve(__dirname, '../dist');

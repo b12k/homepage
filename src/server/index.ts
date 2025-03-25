@@ -44,12 +44,12 @@ void (async () => {
       '/public',
       serveStatic(env.PUBLIC_PATH, {
         etag: false,
-        maxAge: '7d',
+        maxAge: '365d',
       }),
     )
     .use('/:lang?', languageMiddleware)
     .use('/:lang?', contextMiddleware)
-    .use(helmetMiddleware(env.IS_PROD === 'true'))
+    .use(helmetMiddleware(env.IS_PROD))
     .use('/:lang(de|en)', ssrMiddleware)
     .use('*', (request, response) =>
       response.status(404).render('404', {
@@ -60,7 +60,7 @@ void (async () => {
     .use(errorMiddleware)
     .listen(
       env.PORT,
-      () => env.IS_PROD !== 'true' && printDevelopmentBanner(Number(env.PORT)),
+      () => env.IS_PROD && printDevelopmentBanner(Number(env.PORT)),
     );
 })();
 

@@ -6,9 +6,11 @@ import pinoPretty from 'pino-pretty';
 
 import { env } from '../env';
 
-const pinoPrettyStream = pinoPretty({
-  colorize: true,
-});
+const pinoPrettyStream = env.IS_PROD
+  ? undefined
+  : pinoPretty({
+      colorize: true,
+    });
 
 const config = {
   genReqId: (request: Request, response: Response) => {
