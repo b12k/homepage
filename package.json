@@ -7,9 +7,9 @@
   "author": "Bogdan Kolesnyk",
   "scripts": {
     "🚀": "████████████████████████ ✋ SCRIPTS 👇 ████████████████████████████",
-    "prepare": "husky",
+    "prepare": "run-p prepare:*",
     "prepare:env": "shx cp -u .env.example .env",
-    "prepare:husky": "husky init",
+    "prepare:husky": "husky",
     "dev": "run-p dev:*",
     "dev:client": "run-p dev:client:*",
     "dev:client:browser": "env-cmd rspack serve -c rspack/config.browser.ts",
