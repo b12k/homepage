@@ -14,8 +14,10 @@ export const helmetMiddleware =
         directives: {
           connectSrc: [
             "'self'",
-            'https://cloud.umami.is',
-            'https://api-gateway.umami.is',
+            'https://gateway.umami.is',
+            'https://eu.umami.is',
+            'https://api-gateway-eu.umami.dev',
+            'https://api-gateway.umami.dev',
           ],
           imgSrc: [
             "'self'",
@@ -23,12 +25,7 @@ export const helmetMiddleware =
             'https://picsum.photos',
             'https://fastly.picsum.photos',
           ],
-          scriptSrc: [
-            "'self'",
-            `'nonce-${requestId}'`,
-            "'unsafe-eval'",
-            'https://cloud.umami.is',
-          ],
+          scriptSrc: ["'self'", `'nonce-${requestId}'`, "'unsafe-eval'"],
         },
       },
     };
