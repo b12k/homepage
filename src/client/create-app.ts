@@ -1,7 +1,7 @@
 import type { Context } from '@server';
+import type { VueHeadClient } from '@unhead/vue';
 import type { Logger } from 'pino';
 
-import { createHead } from '@unhead/vue';
 import { createPinia, type StateTree } from 'pinia';
 import { createSSRApp } from 'vue';
 import { createRouter, type RouterHistory } from 'vue-router';
@@ -14,15 +14,21 @@ import {
   createServicesVuePlugin,
 } from './services';
 
+export type CreateAppConfig = {
+  head: VueHeadClient;
+  history: RouterHistory;
+  initialState: InitialState;
+  logger: Logger;
+};
 export type InitialState = StateTree & { context: Context };
 
-export const createApp = async (
-  history: RouterHistory,
-  initialState: InitialState,
-  logger: Logger,
-) => {
+export const createApp = async ({
+  head,
+  history,
+  initialState,
+  logger,
+}: CreateAppConfig) => {
   const app = createSSRApp(App);
-  const head = createHead();
   const store = createPinia();
   const services = createServices(initialState.context, logger);
   const router = createRouter({

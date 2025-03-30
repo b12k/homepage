@@ -1,7 +1,7 @@
 import type { Context } from '@server';
 import type { Logger } from 'pino';
 
-import { renderSSRHead } from '@unhead/ssr';
+import { createHead, renderSSRHead } from '@unhead/vue/server';
 import { createMemoryHistory } from 'vue-router';
 import { renderToString } from 'vue/server-renderer';
 
@@ -9,12 +9,12 @@ import { createApp } from './create-app';
 import { execRoutePreFetch } from './router';
 
 const render = async (context: Context, logger: Logger) => {
-  const history = createMemoryHistory(context.baseUrl);
-  const { app, head, router, store } = await createApp(
-    history,
-    { context },
+  const { app, head, router, store } = await createApp({
+    head: createHead(),
+    history: createMemoryHistory(context.baseUrl),
+    initialState: { context },
     logger,
-  );
+  });
 
   await execRoutePreFetch(router.currentRoute.value, undefined, true);
 
