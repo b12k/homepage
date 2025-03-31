@@ -14,7 +14,11 @@ import {
   ssrMiddleware,
 } from './middleware';
 import { cacheService, loggerService } from './services';
-import { getLanguage, printDevelopmentBanner } from './utils';
+import {
+  acceptedLanguages,
+  getLanguage,
+  printDevelopmentBanner,
+} from './utils';
 
 void (async () => {
   await cacheService.initialize({
@@ -47,11 +51,14 @@ void (async () => {
         maxAge: '7d',
       }),
     )
-    .use('/:lang?', languageMiddleware)
-    .use('/:lang?', contextMiddleware)
+    .use('/{:lang}', languageMiddleware)
+    .use('/{:lang}', contextMiddleware)
     .use(helmetMiddleware(env.IS_PROD === 'true'))
-    .use('/:lang(de|en)', ssrMiddleware)
-    .use('*', (request, response) =>
+    .use(
+      acceptedLanguages.map((lang) => `/${lang}`),
+      ssrMiddleware,
+    )
+    .use('/{*splat}', (request, response) =>
       response.status(404).render('404', {
         lang: getLanguage(request),
         requestId: typeof request.id === 'object' ? '' : request.id.toString(),
