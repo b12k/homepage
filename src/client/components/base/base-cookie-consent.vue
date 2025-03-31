@@ -25,9 +25,13 @@
     canShowImage.value = false;
   };
 
+  const expires = new Date();
+  expires.setDate(expires.getDate() + 365);
   const acceptCookieConsent = () => {
     JsCookie.set(consentCookieName, 'true', {
+      expires,
       sameSite: 'lax',
+      secure: true,
     });
     hideChatBubbleAndImage();
   };

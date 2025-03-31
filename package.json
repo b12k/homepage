@@ -19,6 +19,7 @@
     "dev:server:run": "nodemon",
     "dev:public": "pnpm build:public --watch",
     "dev:docker-compose": "docker compose up -d",
+    "docker:down": "docker compose down",
     "check": "run-p check:*",
     "check:format": "pnpm _prettier -c .",
     "check:types": "pnpm _tsc",
