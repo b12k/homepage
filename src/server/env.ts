@@ -12,6 +12,7 @@ const { npm_package_version: VERSION, ...requiredEnv } = required(
   'DEFAULT_LANGUAGE',
   'ACCEPTED_LANGUAGES',
   'npm_package_version',
+  'POCKETBASE_URL',
 );
 
 const {

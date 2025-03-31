@@ -68,6 +68,7 @@ export const buildContext = (request: Request) => {
     isProd: env.NODE_ENV !== 'development',
     isRenderCacheEnabled,
     lang: request.params.lang,
+    pocketbaseUrl: env.POCKETBASE_URL,
     query: request.query,
     requestId: typeof request.id === 'object' ? '' : request.id.toString(),
     shouldRefreshCriticalCssCache,

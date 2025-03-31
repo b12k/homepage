@@ -3,13 +3,15 @@ import type { Logger } from 'pino';
 import type { App, ObjectPlugin } from 'vue';
 
 import { createApi } from './api.service';
+import { createPocketbaseService } from './create-pocketbase.service';
 
 export type Services = ReturnType<typeof createServices>;
 
-export function createServices(_: Context, logger: Logger) {
+export function createServices(context: Context, logger: Logger) {
   return {
     api: createApi(),
     logger,
+    pb: createPocketbaseService(context).pb,
   };
 }
 

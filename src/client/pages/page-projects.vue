@@ -1,5 +1,23 @@
-<script lang="ts" setup>
+<script lang="ts">
+  import { defineComponent, inject } from 'vue';
+
+  import type { Services } from '../services';
+
   import { OssCard } from '../components';
+
+  const $services = inject<Services>('$services');
+
+  export default defineComponent({
+    components: { OssCard },
+    fetchData: async () => {
+      console.log({ $services });
+      const projects = await $services?.pb
+        .collection('projects')
+        .getList(1, 10);
+      $services?.logger.info(JSON.stringify(projects, undefined, 2));
+    },
+    name: 'PageProjects',
+  });
 </script>
 
 <template>

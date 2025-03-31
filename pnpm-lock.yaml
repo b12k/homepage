@@ -73,6 +73,9 @@ importers:
       pino-pretty:
         specifier: 13.0.0
         version: 13.0.0
+      pocketbase:
+        specifier: 0.25.2
+        version: 0.25.2
       purgecss:
         specifier: 7.0.2
         version: 7.0.2
@@ -7576,6 +7579,12 @@ packages:
       }
     engines: { node: '>=4' }
 
+  pocketbase@0.25.2:
+    resolution:
+      {
+        integrity: sha512-ONZl1+qHJMnhR2uacBlBJ90lm7njtL/zy0606+1ROfK9hSL4LRBRc8r89rMcNRzPzRqCNyoFTh2Qg/lYXdEC1w==,
+      }
+
   possible-typed-array-names@1.1.0:
     resolution:
       {
@@ -14568,6 +14577,8 @@ snapshots:
       pathe: 1.1.2
 
   pluralize@8.0.0: {}
+
+  pocketbase@0.25.2: {}
 
   possible-typed-array-names@1.1.0:
     optional: true
