@@ -1,5 +1,5 @@
 import jsPlugin from '@eslint/js';
-import importPlugin from 'eslint-plugin-import-x';
+import { flatConfigs as importPluginFlatConfigs } from 'eslint-plugin-import-x';
 import perfectionistPlugin from 'eslint-plugin-perfectionist';
 import prettierPlugin from 'eslint-plugin-prettier/recommended';
 import unicornPlugin from 'eslint-plugin-unicorn';
@@ -18,8 +18,8 @@ export default createTsConfig(
   ...tsConfigs.recommended,
   ...vuePlugin.configs['flat/strongly-recommended'],
   unicornPlugin.configs.all,
-  importPlugin.flatConfigs.recommended,
-  importPlugin.flatConfigs.typescript,
+  importPluginFlatConfigs.recommended,
+  importPluginFlatConfigs.typescript,
   perfectionistPlugin.configs['recommended-natural'],
   prettierPlugin,
   {
