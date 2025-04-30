@@ -7,6 +7,7 @@
 .husky/_/*
 .temp/*
 !.temp/redis/.gitkeep
+.pocketbase/pb_data
 
 dist
 node_modules

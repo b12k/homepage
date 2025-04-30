@@ -5,13 +5,11 @@
     src: string;
   }
 
-  const { alt, lazy, src } = withDefaults(defineProps<BaseImageProps>(), {
-    alt: 'Image',
-  });
+  const { alt = 'Image', lazy, src } = defineProps<BaseImageProps>();
 </script>
 <template>
   <img
-    :alt="alt || 'banana'"
+    :alt="alt"
     :loading="lazy ? 'lazy' : 'eager'"
     :src="src"
     class="base-image"

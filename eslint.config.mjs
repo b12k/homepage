@@ -12,7 +12,7 @@ import {
 
 export default createTsConfig(
   {
-    ignores: ['dist', '.temp', 'node_modules'],
+    ignores: ['dist', '.temp', 'node_modules', '.pocketbase'],
   },
   jsPlugin.configs.recommended,
   ...tsConfigs.recommended,
